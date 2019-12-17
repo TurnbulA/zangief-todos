@@ -8,14 +8,15 @@ const renderJson = json => {
   el.innerHTML = json.title;
   const userTasks = json
     .map(
-      x => `<ul class="list">
-  <li class ="json-section__userid">${x.userId}</li>
-  <li class ="json-section__id">${x.id}</li>
-  <li class ="json-section__title">${x.title}</li>
-  <li class ="json-section__completed">${x.completed}</li>
-  <br>
-  </ul>`
+      userTask =>
+        `<ul class="list">
+          <li class ="json-section__userid">${userTask.userId}</li>
+          <li class ="json-section__id">${userTask.id}</li>
+          <li class ="json-section__title">${userTask.title}</li>
+          <li class ="json-section__completed">${userTask.completed}</li>
+        </ul>`
     )
     .join("");
+
   el.innerHTML = userTasks;
 };
