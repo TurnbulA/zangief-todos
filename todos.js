@@ -3,7 +3,7 @@ const el = document.querySelector(".json-section");
 fetch("https://jsonplaceholder.typicode.com/todos")
   .then(response => response.json())
   .then(json => renderJson(json))
-  .catch(console.error(error));
+  .catch(error => console.error(error));
 
 const renderJson = json => {
   el.innerHTML = json.title;
