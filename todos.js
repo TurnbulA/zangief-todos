@@ -10,12 +10,17 @@ const renderJson = json => {
   const userTasks = json
     .map(
       userTask =>
-        `<ul class="list">
-          <li class ="json-section__userid">${userTask.userId}</li>
-          <li class ="json-section__id">${userTask.id}</li>
-          <li class ="json-section__title">${userTask.title}</li>
-          <li class ="json-section__completed">${userTask.completed}</li>
-        </ul>`
+        `<div class = "json-section__title">
+
+            <label class = "json-section__title--label">
+              <input type = "checkbox"/>
+              <span class = "check-custom"></span>
+              <div class ="json-section__title--text">
+              <p>${userTask.title}</p>
+            </div>
+            </label>
+           
+        </div>`
     )
     .join("");
 
