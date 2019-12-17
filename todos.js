@@ -2,7 +2,9 @@ const el = document.querySelector(".json-section");
 
 fetch("https://jsonplaceholder.typicode.com/todos")
   .then(response => response.json())
-  .then(json => renderJson(json));
+  .then(json => renderJson(json))
+  .catch(error => error(error))
+  .finally(() => alert("Done"));
 
 const renderJson = json => {
   el.innerHTML = json.title;
