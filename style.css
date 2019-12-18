@@ -1,8 +1,11 @@
 html {
   font-size: 10px;
+  font-family: "Rubik", sans-serif;
+  padding: 1rem;
 }
 body {
   font-size: 1.6rem;
+  margin: 0;
 }
 .container {
   max-width: 120rem;
@@ -55,8 +58,6 @@ body {
   content: "";
   left: 1.2rem;
   top: 1.2rem;
-  height: 0;
-  width: 0;
   border-radius: 0.5rem;
   border: solid #8b8b8b;
   border-width: 0 0.1rem 0.1rem 0;
@@ -65,7 +66,6 @@ body {
 
 .todo-list-item__input input:checked ~ .todo__check-custom {
   background-color: #fd3d6c;
-  border-radius: 0.5rem;
   opacity: 1;
   border: 2px solid transparent;
 }
