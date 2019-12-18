@@ -60,33 +60,25 @@ body {
   border-radius: 0.5rem;
   border: solid #8b8b8b;
   border-width: 0 0.1rem 0.1rem 0;
-  -webkit-transform: rotate(0deg) scale(0);
-  -ms-transform: rotate(0deg) scale(0);
-  transform: rotate(0deg) scale(0);
   opacity: 1;
 }
 
 .todo-list-item__input input:checked ~ .todo__check-custom {
   background-color: #fd3d6c;
   border-radius: 0.5rem;
-  -webkit-transform: rotate(0deg) scale(1);
-  -ms-transform: rotate(0deg) scale(1);
-  transform: rotate(0deg) scale(1);
   opacity: 1;
   border: 2px solid transparent;
 }
 
 .todo-list-item__input input:checked ~ .todo__check-custom::after {
-  -webkit-transform: rotate(45deg) scale(1);
-  -ms-transform: rotate(45deg) scale(1);
-  transform: rotate(45deg) scale(1);
+  transform: rotate(45deg);
   opacity: 1;
   left: 0.8rem;
   top: 0.3rem;
   width: 0.6rem;
   height: 1.2rem;
   border: solid #ffffff;
-  border-width: 00 0.1rem 0.1rem 0;
+  border-width: 0 0.1rem 0.1rem 0;
   background-color: transparent;
   border-radius: 0;
 }

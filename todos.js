@@ -21,6 +21,5 @@ const renderJson = json => {
         </div>`
     )
     .join("");
-
   el.innerHTML = userTasks;
 };
