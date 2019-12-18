@@ -14,7 +14,7 @@ const renderJson = json => {
 
             <label class = "todo-list-item__label">
               <input type="checkbox"/>
-              <span class="todo-list-item__check-custom"></span>
+              <span class="todo__check-custom"></span>
               <div class="todo-list-item__text">              
                 <p>${userTask.title}</p>
               </div>
