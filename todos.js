@@ -1,4 +1,4 @@
-const el = document.querySelector(".json-section");
+const el = document.querySelector(".todo-list-container");
 
 fetch("https://jsonplaceholder.typicode.com/todos")
   .then(response => response.json())
@@ -10,14 +10,14 @@ const renderJson = json => {
   const userTasks = json
     .map(
       userTask =>
-        `<div class = "json-section__title">
+        `<div class = "todo-list__title">
 
-            <label class = "json-section__title--label">
-              <input type = "checkbox"/>
-              <span class = "check-custom"></span>
-              <div class ="json-section__title--text">
-              <p>${userTask.title}</p>
-            </div>
+            <label class = "todo-list--label">
+              <input type="checkbox"/>
+              <span class="todo--check-custom"></span>
+              <div class="todo-list--text">              
+                <p>${userTask.title}</p>
+              </div>
             </label>
            
         </div>`
