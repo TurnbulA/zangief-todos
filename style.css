@@ -30,17 +30,17 @@ body {
   margin-left: 5rem;
   text-transform: capitalize;
 }
-.todo-list-item__label {
+.todo-list-item__input {
   display: flex;
   align-items: center;
 }
-.todo-list-item__label input {
+.todo-list-item__input input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
 }
 
-.todo-list-item__label .todo__check-custom {
+.todo-list-item__input .todo__check-custom {
   position: absolute;
   height: 2.4rem;
   width: 2.4rem;
@@ -50,7 +50,7 @@ body {
   cursor: pointer;
 }
 
-.todo-list-item__label .todo__check-custom::after {
+.todo-list-item__input .todo__check-custom::after {
   position: absolute;
   content: "";
   left: 1.2rem;
@@ -66,7 +66,7 @@ body {
   opacity: 1;
 }
 
-.todo-list-item__label input:checked ~ .todo__check-custom {
+.todo-list-item__input input:checked ~ .todo__check-custom {
   background-color: #fd3d6c;
   border-radius: 0.5rem;
   -webkit-transform: rotate(0deg) scale(1);
@@ -76,7 +76,7 @@ body {
   border: 2px solid transparent;
 }
 
-.todo-list-item__label input:checked ~ .todo__check-custom::after {
+.todo-list-item__input input:checked ~ .todo__check-custom::after {
   -webkit-transform: rotate(45deg) scale(1);
   -ms-transform: rotate(45deg) scale(1);
   transform: rotate(45deg) scale(1);

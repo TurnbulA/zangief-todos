@@ -12,7 +12,7 @@ const renderJson = json => {
       userTask =>
         `<div class = "todo-list-item">
 
-            <label class = "todo-list-item__label">
+            <label class = "todo-list-item__input">
               <input type="checkbox"/>
               <span class="todo__check-custom"></span>
               <div class="todo-list-item__text">              
