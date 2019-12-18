@@ -10,16 +10,14 @@ const renderJson = json => {
   const userTasks = json
     .map(
       userTask =>
-        `<div class = "todo-list-item">
-
-            <label class = "todo-list-item__input">
+        `<div class="todo-list-item">
+            <label class="todo-list-item__input">
               <input type="checkbox"/>
               <span class="todo__check-custom"></span>
               <div class="todo-list-item__text">              
                 <p>${userTask.title}</p>
               </div>
-            </label>
-           
+            </label>           
         </div>`
     )
     .join("");
