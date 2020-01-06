@@ -1,15 +1,17 @@
 html {
   font-size: 10px;
   font-family: "Rubik", sans-serif;
-  padding: 1rem;
 }
 body {
   font-size: 1.6rem;
-  margin: 0;
 }
 .container {
   max-width: 120rem;
   margin: 0 auto;
+}
+.todo-list-header {
+  font-size: 3.2rem;
+  text-align: center;
 }
 .todo-list-container {
   margin: 0 auto;
@@ -21,35 +23,44 @@ body {
 .todo-list-item {
   margin: 2rem auto;
   height: 5rem;
-  width: 50%;
+  width: 60rem;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border: 0.1rem solid #e8e8e8;
+  border-radius: 1rem;
+  padding: 0 6rem;
+  transition: all 200ms ease-in-out;
+}
+.todo-list-item:hover {
+  box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.2);
 }
 .todo-list-item__text {
   display: flex;
   align-items: center;
-  border-bottom: 0.1rem solid #afafaf;
-  width: 25rem;
-  margin-left: 5rem;
+  width: 100%;
   text-transform: capitalize;
+  cursor: pointer;
+  margin-left: 6rem;
 }
 .todo-list-item__input {
   display: flex;
   align-items: center;
+  width: 100%;
 }
 .todo-list-item__input input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
 }
-
 .todo-list-item__input .todo__check-custom {
   position: absolute;
-  height: 2.4rem;
-  width: 2.4rem;
+  height: 2.5rem;
+  width: 2.5rem;
   background-color: transparent;
-  border-radius: 0.5rem;
-  border: 0.1rem solid #8b8b8b;
+  border-radius: 100rem;
+  border: 0.1rem solid #36d7b7;
   cursor: pointer;
 }
 
@@ -58,27 +69,33 @@ body {
   content: "";
   left: 1.2rem;
   top: 1.2rem;
-  border-radius: 0.5rem;
-  border: solid #8b8b8b;
+  border: solid #36d7b7;
   border-width: 0 0.1rem 0.1rem 0;
   opacity: 1;
 }
 
 .todo-list-item__input input:checked ~ .todo__check-custom {
-  background-color: #fd3d6c;
+  background: #36d7b7 url(resources/Check.svg) no-repeat center;
+  background-size: contain;
   opacity: 1;
   border: 2px solid transparent;
 }
 
-.todo-list-item__input input:checked ~ .todo__check-custom::after {
-  transform: rotate(45deg);
-  opacity: 1;
-  left: 0.8rem;
-  top: 0.3rem;
-  width: 0.6rem;
-  height: 1.2rem;
-  border: solid #ffffff;
-  border-width: 0 0.1rem 0.1rem 0;
+.todo-list-item__input:hover + .todo__delete {
+  height: 3rem;
+  width: 3rem;
+  background: url(resources/Close.svg) no-repeat center;
+  background-size: contain;
+}
+.todo__delete:hover {
+  height: 3rem;
+  width: 3rem;
+  background: url(resources/Close.svg) no-repeat center;
+  background-size: contain;
+}
+
+.todo__delete {
+  cursor: pointer;
+  border: none;
   background-color: transparent;
-  border-radius: 0;
 }
