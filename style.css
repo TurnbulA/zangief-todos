@@ -56,19 +56,16 @@ body {
 }
 .todo-list-item__input .todo__check-custom {
   position: absolute;
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 4rem;
+  width: 4rem;
   background-color: transparent;
   border-radius: 100rem;
   border: 0.1rem solid #36d7b7;
   cursor: pointer;
 }
-
 .todo-list-item__input .todo__check-custom::after {
   position: absolute;
   content: "";
-  left: 1.2rem;
-  top: 1.2rem;
   border: solid #36d7b7;
   border-width: 0 0.1rem 0.1rem 0;
   opacity: 1;
@@ -76,9 +73,10 @@ body {
 .todo-list-item__input input:checked ~ .todo__check-custom {
   background: #36d7b7 url(resources/Check.svg) no-repeat center;
   background-size: contain;
-  padding: 0.1rem;
+  height: 4rem;
+  width: 4rem;
   opacity: 1;
-  border: 2px solid transparent;
+  border: 3px solid #36d7b7;
 }
 .todo-list-item__input:hover + .todo__delete {
   height: 3rem;
