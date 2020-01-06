@@ -9,13 +9,17 @@ const renderJson = json => {
   el.innerHTML = json.title;
   const userTasks = json
     .map(
-      userTask =>
-        `<ul class="list">
-          <li class ="json-section__userid">${userTask.userId}</li>
-          <li class ="json-section__id">${userTask.id}</li>
-          <li class ="json-section__title">${userTask.title}</li>
-          <li class ="json-section__completed">${userTask.completed}</li>
-        </ul>`
+      ({ title }) =>
+        `<div class="todo-list-item">
+            <label class="todo-list-item__input">
+              <input type="checkbox"/>
+              <span class="todo__check-custom"></span>
+              <div class="todo-list-item__text">              
+                <p>${title}</p>
+              </div>     
+            </label>      
+            <div class="todo__delete"></div>  
+        </div>`
     )
     .join("");
 
