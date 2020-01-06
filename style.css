@@ -36,6 +36,9 @@ body {
 .todo-list-item:hover {
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
 }
+.todo-list-item:hover .todo__delete {
+  opacity: 1;
+}
 .todo-list-item__text {
   display: flex;
   align-items: center;
@@ -56,43 +59,38 @@ body {
 }
 .todo-list-item__input .todo__check-custom {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 4rem;
   width: 4rem;
+  padding: auto;
   background-color: transparent;
   border-radius: 100rem;
-  border: 0.1rem solid #36d7b7;
+  border: 0.25rem solid #36d7b7;
   cursor: pointer;
+  transition: all 200ms ease-in-out;
 }
 .todo-list-item__input .todo__check-custom::after {
   position: absolute;
   content: "";
   border: solid #36d7b7;
   border-width: 0 0.1rem 0.1rem 0;
-  opacity: 1;
 }
 .todo-list-item__input input:checked ~ .todo__check-custom {
-  background: #36d7b7 url(resources/Check.svg) no-repeat center;
-  background-size: contain;
-  height: 4rem;
-  width: 4rem;
-  opacity: 1;
-  border: 3px solid #36d7b7;
+  background: #36d7b7;
 }
-.todo-list-item__input:hover + .todo__delete {
-  height: 3rem;
-  width: 3rem;
-  background: url(resources/Close.svg) no-repeat center;
-  background-size: contain;
-}
-.todo__delete:hover {
-  height: 3rem;
-  width: 3rem;
-  background: url(resources/Close.svg) no-repeat center;
-  background-size: contain;
-}
+
 .todo__delete {
   cursor: pointer;
   border: none;
-  background-color: transparent;
-  transition: all 500ms ease-in-out;
+  opacity: 0;
+  transition: all 200ms ease-in-out;
+}
+.c-svg__check {
+  fill: #fff;
+}
+
+.c-svg__cross {
+  fill: #f64747;
 }
