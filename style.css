@@ -51,7 +51,7 @@ body {
   font-weight: 300;
   text-transform: capitalize;
   cursor: pointer;
-  margin-left: 17rem;
+  margin-left: 10rem;
 }
 .todo-list-item__input {
   height: 100%;
@@ -71,8 +71,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 4.5rem;
-  width: 4.5rem;
+  height: 5rem;
+  width: 5rem;
   padding: auto;
   background-color: transparent;
   border-radius: 100rem;
