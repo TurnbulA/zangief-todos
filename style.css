@@ -17,10 +17,9 @@ h1 {
   margin: 0 auto;
 }
 .todo-list-header {
-  margin: 0 auto;
+  margin: 0 auto 11rem 0;
   font-size: 5rem;
   text-align: center;
-  margin-bottom: 11rem;
 }
 .todo-list-container {
   display: flex;
@@ -112,6 +111,9 @@ p::first-letter {
 }
 
 @media only screen and (max-width: 768px) {
+  .todo-list-container {
+    padding: 2rem;
+  }
   .todo-list-item {
     display: flex;
     justify-content: center;
@@ -122,6 +124,7 @@ p::first-letter {
   .todo-list-item__text {
     margin: 5rem 0 0 0;
     justify-content: center;
+    text-align: center;
   }
   .todo-list-item__input {
     z-index: 0;
