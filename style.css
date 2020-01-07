@@ -47,6 +47,8 @@ body {
   align-items: center;
   height: auto;
   width: 100%;
+  font-size: 3rem;
+  font-weight: 300;
   text-transform: capitalize;
   cursor: pointer;
   margin-left: 6rem;
