@@ -111,30 +111,37 @@ p::first-letter {
 }
 
 @media only screen and (max-width: 768px) {
+  .todo-list-header {
+    font-size: 3rem;
+  }
   .todo-list-container {
     padding: 2rem;
   }
   .todo-list-item {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
     height: auto;
-    padding: 1rem;
   }
   .todo-list-item__text {
-    margin: 5rem 0 0 0;
-    justify-content: center;
-    text-align: center;
+    margin: 0 0 0 5rem;
+    font-size: 1.8rem;
+    align-items: center;
   }
   .todo-list-item__input {
-    z-index: 0;
-    padding: 0;
-    margin: 0;
-    flex-direction: column;
+    padding: 2rem;
     height: 100%;
   }
+  .todo-list-item__input .todo__check-custom {
+    height: 3rem;
+    width: 3rem;
+  }
+  .todo__check-custom__svg {
+    height: 1.2rem;
+    width: 1.7rem;
+  }
+  .todo__delete__svg {
+    height: 1.8rem;
+    width: 1.9rem;
+  }
   .todo__delete {
-    z-index: 1;
-    margin: 0 auto;
+    margin-right: 1.5rem;
   }
 }
