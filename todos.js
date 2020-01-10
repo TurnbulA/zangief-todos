@@ -45,3 +45,87 @@ const deleteEvent = () => {
     });
   });
 };
+
+const menuToggle = (buttonClassName, dropdownClassName) => {
+  const dropdown = document.querySelector(buttonClassName);
+  dropdown.addEventListener("click", () => {
+    const dropContent = document.querySelector(dropdownClassName);
+    if (dropContent.style.display === "none") {
+      dropContent.style.display = "block";
+    } else {
+      dropContent.style.display = "none";
+    }
+  });
+};
+menuToggle(".c-filter-option__filter", ".c-filter-option__drop-filter");
+menuToggle(".c-filter-option__sort", ".c-filter-option__drop-sort");
+
+const filterActive = buttonClassName => {
+  const dropButton = document.querySelector(buttonClassName);
+  dropButton.addEventListener("click", () => {
+    const activeContent = document.querySelector(
+      ".c-filter-option-active-text"
+    );
+    const reset = document.querySelector(".c-filter-option-active--reset");
+    if (dropButton.classList.contains("todo-list-menu--drop-complete")) {
+      activeContent.classList.add("c-filter-option-active-left");
+      document.querySelector(".c-filter-option-active-left").innerHTML =
+        "Filter: Completed items";
+      reset.style.display = "block";
+      document.querySelector(".todo-list-menu--drop-content").style.display =
+        "none";
+    } else if (
+      dropButton.classList.contains("todo-list-menu--drop-incomplete")
+    ) {
+      activeContent.classList.add("c-filter-option-active-left");
+      document.querySelector(".c-filter-option-active-left").innerHTML =
+        "Filter: Incompleted items";
+      reset.style.display = "block";
+      document.querySelector(".todo-list-menu--drop-content").style.display =
+        "none";
+    } else if (
+      dropButton.classList.contains("todo-list-menu--drop-alphabetical")
+    ) {
+      activeContent.classList.add("c-filter-option-active-middle");
+      document.querySelector(".c-filter-option-active-middle").innerHTML =
+        "Sort: Alphabetical";
+      document.querySelector(".c-filter-option-active--reset").style.display =
+        "block";
+      document.querySelector(".c-filter-option__drop-sort").style.display =
+        "none";
+    } else if (
+      dropButton.classList.contains("todo-list-menu--drop-reverseAlpha")
+    ) {
+      activeContent.classList.add("c-filter-option-active-middle");
+      document.querySelector(".c-filter-option-active-middle").innerHTML =
+        "Sort: Reverse alphabetical";
+      document.querySelector(".c-filter-option-active--reset").style.display =
+        "block";
+      document.querySelector(".c-filter-option__drop-sort").style.display =
+        "none";
+    } else {
+      error => console.error(error);
+    }
+  });
+};
+const applyFilter = element => {
+  document.querySelector(element).addEventListener("click", () => {
+    const classList = document.querySelector(element).classList;
+    if (classList.contains("todo-list-menu--drop-complete")) {
+      filterActive(".todo-list-menu--drop-complete");
+    } else if (classList.contains("todo-list-menu--drop-incomplete")) {
+      filterActive(".todo-list-menu--drop-incomplete");
+    } else if (classList.contains("todo-list-menu--drop-alphabetical")) {
+      filterActive(".todo-list-menu--drop-alphabetical");
+    } else if (classList.contains("todo-list-menu--drop-reverseAlpha")) {
+      filterActive(".todo-list-menu--drop-reverseAlpha");
+    } else {
+      error => console.error(error);
+    }
+  });
+};
+
+applyFilter(".todo-list-menu--drop-complete");
+applyFilter(".todo-list-menu--drop-incomplete");
+applyFilter(".todo-list-menu--drop-alphabetical");
+applyFilter(".todo-list-menu--drop-reverseAlpha");
