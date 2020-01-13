@@ -13,19 +13,19 @@
   </head>
   <body>
     <div class="container">
-      <section class="todo-list-header">
-        <h1>To do list</h1>
+      <section class="c-header">
+        <h1 class="c-header-heading">To do list</h1v b>
       </section>
-      <section class="todo-list-menu">
-        <div class="c-filter-option todo-list-menu__dropdown-filter">
-          <button class="c-filter-option__dropbtn c-filter-option__filter">
+      <section class="c-menu">
+        <div class="c-menu-control c-menu-item--filter">
+          <button class="c-menu-control__dropdown c-menu-control__filter">
             Filter
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="29.998"
               height="30"
               viewBox="0 0 29.998 30"
-              class="todo-list-menu-filter__svg"
+              class="c-menu-filter__svg"
             >
               <path
                 id="filter"
@@ -36,29 +36,29 @@
             </svg>
           </button>
           <div
-            class="todo-list-menu--drop-content c-filter-option__drop-filter"
+            class="c-menu-control__dropdown--content c-menu-control__dropdown-filter"
           >
             <div
-              class="todo-list-menu--drop-item todo-list-menu--drop-complete"
+              class="c-menu-control__dropdown--item c-menu-control__dropdown--complete"
             >
               Completed items
             </div>
-            <div class="todo-list-menu--drop-line"></div>
+            <div class="c-menu-control__dropdown--line"></div>
             <div
-              class="todo-list-menu--drop-item todo-list-menu--drop-incomplete"
+              class="c-menu-control__dropdown--item c-menu-control__dropdown--incomplete"
             >
               Incomplete items
             </div>
           </div>
-          <div class="c-filter-option-active">
-            <p class="c-filter-option-active-text"></p>
-            <button class="c-filter-option-active--reset">
+          <div class="c-menu-control-active">
+            <p class="c-menu-control-active-text"></p>
+            <button class="c-menu-control-active--reset">
               Reset filter
             </button>
           </div>
         </div>
-        <div class="c-filter-option todo-list-menu__dropdown-sort">
-          <button class="c-filter-option__dropbtn c-filter-option__sort">
+        <div class="c-menu-control c-menu-item--sort">
+          <button class="c-menu-control__dropdown c-menu-control__sort">
             Sort
             <svg
               id="Group_9"
@@ -84,35 +84,35 @@
               />
             </svg>
           </button>
-          <div class="todo-list-menu--drop-content c-filter-option__drop-sort">
+          <div class="c-menu-control__dropdown--content c-menu-control__dropdown-sort">
             <div
-              class="todo-list-menu--drop-item todo-list-menu--drop-alphabetical"
+              class="c-menu-control__dropdown--item c-menu-control__dropdown--alphabetical"
             >
               Alphabetical
             </div>
-            <div class="todo-list-menu--drop-line"></div>
+            <div class="c-menu-control__dropdown--line"></div>
             <div
-              class="todo-list-menu--drop-item todo-list-menu--drop-reverseAlpha"
+              class="c-menu-control__dropdown--item c-menu-control__dropdown--reverseAlpha"
             >
               Reverse Alphabetical
             </div>
           </div>
-          <p class="c-filter-option-sort-text"></p>
+          <p class="c-menu-control-sort-text"></p>
         </div>
 
-        <div class="todo-list-menu--item , todo-list-menu-search">
+        <div class="c-menu-item , c-menu-control--search">
           <form>
             <input
               type="text"
-              class="todo-list-menu-search__input"
+              class="c-menu-control--search__input"
               placeholder="Search"
             />
-            <button type="submit" class="search__input__svg">
+            <button type="submit" class="search--input__svg"\>
               <svg
                 id="search_1_"
                 data-name="search (1)"
                 xmlns="http://www.w3.org/2000/svg"
-                class="todo-list-menu-search__svg"
+                class="c-menu-control--search__svg"
                 width="39.64"
                 height="39.64"
                 viewBox="0 0 39.64 39.64"
@@ -131,7 +131,7 @@
           </form>
         </div>
       </section>
-      <div class="todo-list-container"></div>
+      <div class="c-list"></div>
     </div>
     <script src="todos.js"></script>
   </body>
