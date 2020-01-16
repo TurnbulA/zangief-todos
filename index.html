@@ -14,7 +14,7 @@
   <body>
     <div class="container">
       <section class="c-header">
-        <h1 class="c-header-heading">To do list</h1v b>
+        <h1 class="c-header-heading">To do list</h1>
       </section>
       <section class="c-menu">
         <div class="c-menu-control c-menu-item--filter">
@@ -50,11 +50,9 @@
               Incomplete items
             </div>
           </div>
-          <div class="c-menu-control-active">
-            <p class="c-menu-control-active-text"></p>
-            <button class="c-menu-control-active--reset">
-              Reset filter
-            </button>
+          <div class="c-menu-control--active">
+            <p class="c-menu-control--active-text"></p>
+            <button class="c-menu-control--active-reset"></button>
           </div>
         </div>
         <div class="c-menu-control c-menu-item--sort">
@@ -84,7 +82,9 @@
               />
             </svg>
           </button>
-          <div class="c-menu-control__dropdown--content c-menu-control__dropdown-sort">
+          <div
+            class="c-menu-control__dropdown--content c-menu-control__dropdown-sort"
+          >
             <div
               class="c-menu-control__dropdown--item c-menu-control__dropdown--alphabetical"
             >
@@ -100,14 +100,14 @@
           <p class="c-menu-control-sort-text"></p>
         </div>
 
-        <div class="c-menu-item , c-menu-control--search">
+        <div class="c-menu-control  c-menu-control--search">
           <form>
             <input
               type="text"
               class="c-menu-control--search__input"
               placeholder="Search"
             />
-            <button type="submit" class="search--input__svg"\>
+            <button type="submit" class="search--input__svg">
               <svg
                 id="search_1_"
                 data-name="search (1)"
