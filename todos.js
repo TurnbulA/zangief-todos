@@ -40,32 +40,24 @@ const renderJson = json => {
 };
 
 const svgChange = () => {
-  const activeClass = document.querySelector(".c-list-item");
-  activeClass.addEventListener("click", event => {
-    event.stopPropagation();
-    event.preventDefault();
-    document.querySelector(".c-list-item__input--custom").style.display =
-      "block";
-    console.log(activeClass.classList);
-    if (activeClass.classList.contains("c-list-item-off")) {
-      activeClass.classList.remove("c-list-item-off");
-      activeClass.classList.add("c-list-item-on");
-      console.log(activeClass.classList);
-      filterToggle(
-        ".c-list-item-on",
-        ".c-list-item-off",
-        ".c-menu-control__dropdown--complete"
-      );
-    } else {
-      activeClass.classList.remove("c-list-item-on");
-      activeClass.classList.add("c-list-item-off");
-      console.log(activeClass.classList);
-      filterToggle(
-        ".c-list-item-on",
-        ".c-list-item-off",
-        ".c-menu-control__dropdown--incomplete"
-      );
-    }
+  const listItems = Array.from(document.querySelectorAll(".c-list-item"));
+  const selectItem = element => {
+    element.classList.remove("c-list-item-off");
+    element.classList.add("c-list-item-on");
+    element.querySelector('[type="checkbox"]').checked = true;
+  };
+  const deselectItem = element => {
+    element.classList.remove("c-list-item-on");
+    element.classList.add("c-list-item-off");
+    element.querySelector('[type="checkbox"]').checked = false;
+  };
+  listItems.forEach(listItem => {
+    listItem.addEventListener("click", function(event) {
+      event.preventDefault();
+      this.classList.contains("c-list-item-off")
+        ? selectItem(this)
+        : deselectItem(this);
+    });
   });
 };
 
@@ -131,11 +123,7 @@ const filterActive = buttonClassName => {
       document.querySelector(
         ".c-menu-control__dropdown--content"
       ).style.display = "none";
-      filterToggle(
-        ".c-list-item-on",
-        ".c-list-item-off",
-        ".c-menu-control__dropdown--complete"
-      );
+      filterComplete(".c-list-item");
     } else if (
       dropButton.classList.contains("c-menu-control__dropdown--incomplete")
     ) {
@@ -147,6 +135,7 @@ const filterActive = buttonClassName => {
       document.querySelector(
         ".c-menu-control__dropdown--content"
       ).style.display = "none";
+      filterComplete(".c-list-item");
     } else if (
       dropButton.classList.contains("c-menu-control__dropdown--alphabetical")
     ) {
@@ -206,14 +195,15 @@ const sortAlphabetical = buttonClassName => {
   }
 };
 
-const filterToggle = (filterShow, filterHide, filterButton) => {
-  showClass = document.querySelector(filterShow);
-  hideClass = document.querySelector(filterHide);
-  toggleButton = document.querySelector(filterButton);
-
-  toggleButton.addEventListener("click", () => {
-    if (toggleButton.classList.contains("c-menu-control__dropdown--complete")) {
-      hideClass.style.display = "none";
-    }
-  });
+const filterComplete = classToggle => {
+  toggleClass = document.querySelector(classToggle);
+  console.log(toggleClass.classList);
+  if (toggleClass.classList.contains("c-list-item-on")) {
+    console.log("test");
+    hideClass = Array.from(document.querySelectorAll(classToggle));
+    console.log(hideClass);
+    hideClass.forEach(() => {
+      document.querySelector(".c-list-item-off").style.display = "none";
+    });
+  }
 };
