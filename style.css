@@ -209,6 +209,7 @@ p::first-letter {
   transition: all 200ms ease-in-out;
 }
 .c-list-item__input .c-list-item__input--custom::after {
+  display: none;
   position: absolute;
   content: "";
   border: solid #36d7b7;

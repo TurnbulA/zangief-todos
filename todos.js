@@ -43,6 +43,10 @@ const svgChange = () => {
   const activeClass = document.querySelector(".c-list-item");
   activeClass.addEventListener("click", event => {
     event.stopPropagation();
+    event.preventDefault();
+    document.querySelector(".c-list-item__input--custom").style.display =
+      "block";
+    console.log(activeClass.classList);
     if (activeClass.classList.contains("c-list-item-off")) {
       activeClass.classList.remove("c-list-item-off");
       activeClass.classList.add("c-list-item-on");
@@ -52,7 +56,7 @@ const svgChange = () => {
         ".c-list-item-off",
         ".c-menu-control__dropdown--complete"
       );
-    } else if (activeClass.classList.contains("c-list-item-on")) {
+    } else {
       activeClass.classList.remove("c-list-item-on");
       activeClass.classList.add("c-list-item-off");
       console.log(activeClass.classList);
