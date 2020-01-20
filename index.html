@@ -9,15 +9,130 @@
       href="https://fonts.googleapis.com/css?family=Rubik:300,400&display=swap"
       rel="stylesheet"
     />
-    <title>Document</title>
+    <title>Todo List</title>
   </head>
   <body>
     <div class="container">
-      <section class="todo-list-header">
+      <section class="c-header">
         <h1>To do list</h1>
       </section>
-      <div class="todo-list-container"></div>
+      <section class="c-menu">
+        <div class="c-menu-controls">
+          <div class="c-menu-control">
+            <button class="c-menu__dropdown-control">
+              Filter
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="29.998"
+                height="30"
+                viewBox="0 0 29.998 30"
+                class="c-menu-control__filter-svg"
+              >
+                <path
+                  id="filter"
+                  d="M29.327,0H1.672A1.172,1.172,0,0,0,.5,1.172,11.445,11.445,0,0,0,4.338,9.719L9.47,14.281a4.176,4.176,0,0,1,1.4,3.119V28.827a1.172,1.172,0,0,0,1.822.975l6.914-4.609a1.172,1.172,0,0,0,.522-.975V17.4a4.176,4.176,0,0,1,1.4-3.119L26.66,9.719A11.445,11.445,0,0,0,30.5,1.172,1.172,1.172,0,0,0,29.327,0ZM25.1,7.967l-5.132,4.562a6.521,6.521,0,0,0-2.187,4.87V23.59l-4.57,3.047V17.4a6.522,6.522,0,0,0-2.187-4.87L5.9,7.967A9.1,9.1,0,0,1,2.92,2.344H28.079A9.1,9.1,0,0,1,25.1,7.967Zm0,0"
+                  transform="translate(-0.5)"
+                  fill="#34495e"
+                />
+              </svg>
+            </button>
+
+            <ul class="c-menu__dropdown-content">
+              <li
+                class="c-menu__dropdown-item"
+                data-control="filter--complete"
+              >
+                Completed items
+            </li>
+              <li class="c-menu__dropdown-item"
+                data-control="filter--incomplete"
+              >
+                Incomplete items
+              </li>
+            </ul>
+          </div>
+
+          <div class="c-menu-control">
+            <button class="c-menu__dropdown-control">
+              Sort
+              <svg
+                id="Group_9"
+                data-name="Group 9"
+                xmlns="http://www.w3.org/2000/svg"
+                width="28.143"
+                height="27.2"
+                viewBox="0 0 28.143 27.2"
+              >
+                <path
+                  id="Path_2"
+                  data-name="Path 2"
+                  d="M281.323,34.928a.707.707,0,1,0,1.415,0V10.845l4.232,4.232a.706.706,0,0,0,1-.995l-5.434-5.434a.723.723,0,0,0-.995,0l-5.434,5.434a.7.7,0,1,0,.995.995l4.232-4.232V34.928Z"
+                  transform="translate(-260.034 -8.436)"
+                  fill="#34495e"
+                />
+                <path
+                  id="Path_3"
+                  data-name="Path 3"
+                  d="M12.07,28.758a.7.7,0,0,0-.995,0L6.843,32.99V8.907a.707.707,0,0,0-1.415,0V32.99L1.2,28.758a.7.7,0,0,0-.995.995l5.434,5.434a.708.708,0,0,0,1,0l5.434-5.434A.717.717,0,0,0,12.07,28.758Z"
+                  transform="translate(0 -8.2)"
+                  fill="#34495e"
+                />
+              </svg>
+            </button>
+            <ul class="c-menu__dropdown-content c-menu__dropdown-sort">
+              <li class="c-menu__dropdown-item" data-control="sort--alpha">
+                Alphabetical
+              </li>
+
+              <li class="c-menu__dropdown-item" data-control="sort--rev-alpha">
+                Reverse Alphabetical
+              </li>
+            </ul>
+          </div>
+
+          <div class="c-menu-control c-menu-control__search">
+            <form>
+              <input
+                type="text"
+                class="c-menu-control__search-input"
+                placeholder="Search"
+              />
+              <button type="submit" class="c-search__input-svg">
+                <svg
+                  id="search_1_"
+                  data-name="search (1)"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="c-menu-control--search__svg"
+                  width="39.64"
+                  height="39.64"
+                  viewBox="0 0 39.64 39.64"
+                >
+                  <g
+                    id="Group_8"
+                    data-name="Group 8"
+                    transform="translate(0 0)"
+                  >
+                    <path
+                      id="Path_1"
+                      data-name="Path 1"
+                      d="M39.4,37.062,27.883,25.547a15.722,15.722,0,1,0-2.335,2.336L37.062,39.4a.826.826,0,0,0,1.168,0L39.4,38.23A.826.826,0,0,0,39.4,37.062ZM15.691,28.078A12.387,12.387,0,1,1,28.078,15.691,12.4,12.4,0,0,1,15.691,28.078Z"
+                      transform="translate(0 0)"
+                      fill="#e8e8e8"
+                    />
+                  </g>
+                </svg>
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="c-menu-status">
+            <p class="c-menu-status__text"></p>
+            <button class="c-menu-status__reset"></button>
+          </div>
+        </div>
+      </section>
+      <div class="c-list"></div>
     </div>
-    <script src="todos.js"></script>
+    <!-- <script src="todos.js"></script> -->
   </body>
 </html>
