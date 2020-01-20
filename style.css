@@ -106,19 +106,13 @@ form {
 .c-menu-control__search-input::placeholder {
   color: #e8e8e8;
 }
-.c-menu-status--active {
+.c-menu-status {
   display: none;
   font-size: 3rem;
   width: 33rem;
   z-index: 1;
 }
-.c-menu-status--active-on {
-  clear: both;
-  overflow: hidden;
-  white-space: nowrap;
-  margin-right: 5rem;
-}
-.c-menu-status--active-reset {
+.c-menu-status-reset {
   border: none;
   background: none;
   font-size: 2rem;
