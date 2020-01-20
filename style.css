@@ -23,7 +23,7 @@ h1 {
 }
 .c-menu {
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
-  margin-bottom: 6rem;
+  margin: 0 3rem 6rem 3rem;
   border-radius: 3rem;
   display: flex;
   flex-direction: row;
@@ -35,15 +35,19 @@ h1 {
   justify-content: space-between;
   width: 100%;
 }
+.c-menu-title {
+  display: none;
+}
 .c-menu-control {
-  border-radius: 3rem;
   cursor: pointer;
   display: flex;
   flex-direction: row;
   position: relative;
   display: inline-block;
 }
-
+.c-menu-control--search__svg {
+  fill: #e8e8e8;
+}
 .c-menu__dropdown-control {
   border: 2px solid #e8e8e8;
   border-radius: 3rem;
@@ -74,13 +78,14 @@ h1 {
 .c-menu__dropdown-content .c-menu__dropdown--item:hover {
   background-color: #ddd;
 }
-
 .c-menu-control__search {
+  border-radius: 3rem;
   display: flex;
   justify-content: center;
   flex-basis: 65%;
   color: #e8e8e8;
   margin-right: 0;
+  padding-right: 2rem;
   justify-content: space-between;
   align-items: center;
   border: 1px solid #e8e8e8;
@@ -91,7 +96,7 @@ h1 {
   background-color: transparent;
   width: 100%;
   font-size: 3rem;
-  padding: 2rem 5rem 2rem 3rem;
+  padding: 2rem 3rem 2rem 3rem;
 }
 form {
   width: 100%;
@@ -215,6 +220,45 @@ p::first-letter {
 }
 
 @media only screen and (max-width: 768px) {
+  .c-menu {
+    margin: 0 2rem 0 2rem;
+    box-shadow: none;
+    border: 1px solid #e8e8e8;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .c-menu-controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+  .c-menu-title {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+  }
+  .c-menu-control {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    width: 100%;
+  }
+  .c-menu__dropdown-control {
+    width: 100%;
+  }
+  .c-menu-control__search {
+    display: flex;
+    justify-content: center;
+    border: 1px solid #e8e8e8;
+  }
+  .c-menu-control__search-input::placeholder {
+    color: #34495e;
+  }
+  .c-menu-control--search__svg {
+    fill: #34495e;
+  }
   .c-list-header {
     margin: 0 0 9rem 0;
     font-size: 3rem;

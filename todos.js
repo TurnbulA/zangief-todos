@@ -1,19 +1,22 @@
 const el = document.querySelector(".c-list");
 
-fetch("https://jsonplaceholder.typicode.com/todos")
-  .then(response => response.json())
-  .then(json => {
-    renderJson(json);
-    deleteEvent();
-  })
-  .catch(error => console.error(error));
+window.addEventListener("DOMContentLoaded", () => {
+  fetch("https://jsonplaceholder.typicode.com/todos")
+    .then(response => response.json())
+    .then(json => {
+      renderJson(json);
+      svgChange();
+      deleteEvent();
+    })
+    .catch(error => console.error(error));
+});
 
 const renderJson = json => {
   el.innerHTML = json.title;
   const userTasks = json
     .map(
       ({ title }) =>
-        `<div class="c-list-item" >
+        `<div class="c-list-item c-list-item-off">
             <label class="c-list-item__input">
               <input type="checkbox"/>
               <span class="c-list-item__input--custom">
@@ -34,6 +37,28 @@ const renderJson = json => {
     )
     .join("");
   el.innerHTML = userTasks;
+};
+
+const svgChange = () => {
+  const listItems = Array.from(document.querySelectorAll(".c-list-item"));
+  const selectItem = element => {
+    element.classList.remove("c-list-item-off");
+    element.classList.add("c-list-item-on");
+    element.querySelector('[type="checkbox"]').checked = true;
+  };
+  const deselectItem = element => {
+    element.classList.remove("c-list-item-on");
+    element.classList.add("c-list-item-off");
+    element.querySelector('[type="checkbox"]').checked = false;
+  };
+  listItems.forEach(listItem => {
+    listItem.addEventListener("click", function(event) {
+      event.preventDefault();
+      this.classList.contains("c-list-item-off")
+        ? selectItem(this)
+        : deselectItem(this);
+    });
+  });
 };
 
 const deleteEvent = () => {
@@ -98,6 +123,8 @@ const filterActive = buttonClassName => {
       document.querySelector(
         ".c-menu-control__dropdown--content"
       ).style.display = "none";
+      filterComplete(".c-list-item");
+      resetButton(reset);
     } else if (
       dropButton.classList.contains("c-menu-control__dropdown--incomplete")
     ) {
@@ -109,6 +136,8 @@ const filterActive = buttonClassName => {
       document.querySelector(
         ".c-menu-control__dropdown--content"
       ).style.display = "none";
+      filterIncomplete(".c-list-item");
+      resetButton(reset);
     } else if (
       dropButton.classList.contains("c-menu-control__dropdown--alphabetical")
     ) {
@@ -119,7 +148,7 @@ const filterActive = buttonClassName => {
       reset.innerHTML = "Reset sort";
       document.querySelector(".c-menu-control__dropdown-sort").style.display =
         "none";
-      sortAlphabetical();
+      sortAlphabetical(".c-menu-control__dropdown--alphabetical");
     } else if (
       dropButton.classList.contains("c-menu-control__dropdown--reverseAlpha")
     ) {
@@ -130,6 +159,7 @@ const filterActive = buttonClassName => {
       reset.innerHTML = "Reset sort";
       document.querySelector(".c-menu-control__dropdown-sort").style.display =
         "none";
+      sortAlphabetical(".c-menu-control__dropdown--reverseAlpha");
     } else {
       error => console.error(error);
     }
