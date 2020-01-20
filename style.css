@@ -29,26 +29,22 @@ h1 {
   flex-direction: row;
   padding: 3rem 5rem;
 }
+.c-menu-controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
 .c-menu-control {
   border-radius: 3rem;
-  margin-right: 5rem;
   cursor: pointer;
   display: flex;
   flex-direction: row;
-}
-.c-menu-item--filter {
   position: relative;
   display: inline-block;
-  width: 16rem;
-  margin-right: 5rem;
 }
-.c-menu-item--sort {
-  position: relative;
-  display: inline-block;
-  width: 15rem;
-  margin-right: 5rem;
-}
-.c-menu-control__dropdown {
+
+.c-menu__dropdown-control {
   border: 2px solid #e8e8e8;
   border-radius: 3rem;
   background: transparent;
@@ -56,8 +52,9 @@ h1 {
   font-size: 3rem;
   padding: 2rem;
   cursor: pointer;
+  color: #34495e;
 }
-.c-menu-control__dropdown--content {
+.c-menu__dropdown-content {
   display: none;
   position: absolute;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
@@ -66,7 +63,7 @@ h1 {
   border-radius: 3rem;
   padding: 3rem 2rem;
 }
-.c-menu-control__dropdown--content .c-menu-control__dropdown--item {
+.c-menu__dropdown-content .c-menu__dropdown--item {
   font-size: 3rem;
   text-decoration: none;
   display: block;
@@ -74,24 +71,14 @@ h1 {
   font-family: "Rubik", sans-serif;
   cursor: pointer;
 }
-.c-menu-control__dropdown--content .c-menu-control__dropdown--item:hover {
+.c-menu__dropdown-content .c-menu__dropdown--item:hover {
   background-color: #ddd;
 }
-.c-menu-control__dropdown {
-  color: #34495e;
-}
-.c-menu-control__dropdown--line {
-  margin: 2rem 0;
-  border: 1px solid #e8e8e8;
-}
-.c-menu-control__dropdown-filter {
-  width: 30rem;
-}
-.c-menu-control__dropdown-sort {
-  width: 32rem;
-}
-.c-menu-control--search {
-  width: 69rem;
+
+.c-menu-control__search {
+  display: flex;
+  justify-content: center;
+  flex-basis: 65%;
   color: #e8e8e8;
   margin-right: 0;
   justify-content: space-between;
@@ -99,7 +86,7 @@ h1 {
   border: 1px solid #e8e8e8;
   max-height: 8.2rem;
 }
-.c-menu-control--search__input {
+.c-menu-control__search-input {
   border: none;
   background-color: transparent;
   width: 100%;
@@ -116,22 +103,22 @@ form {
   border: none;
   cursor: pointer;
 }
-.c-menu-control--search__input::placeholder {
+.c-menu-control__search-input::placeholder {
   color: #e8e8e8;
 }
-.c-menu-control--active {
+.c-menu-status--active {
   display: none;
   font-size: 3rem;
   width: 33rem;
   z-index: 1;
 }
-.c-menu-control--active-on {
+.c-menu-status--active-on {
   clear: both;
   overflow: hidden;
   white-space: nowrap;
   margin-right: 5rem;
 }
-.c-menu-control--active-reset {
+.c-menu-status--active-reset {
   border: none;
   background: none;
   font-size: 2rem;
