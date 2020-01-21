@@ -80,15 +80,12 @@ const menuToggle = () => {
   menuControls.forEach(menuControl => {
     menuControl.addEventListener("click", function(event) {
       const dropdownControl = this.querySelector(".c-menu__dropdown-content");
-      if (
-        dropdownControl.classList.contains("c-menu__dropdown-content--show")
-      ) {
-        dropdownControl.classList.add("c-menu__dropdown-content");
-        dropdownControl.classList.remove("c-menu__dropdown-content--show");
-      } else {
-        dropdownControl.classList.add("c-menu__dropdown-content--show");
-      }
+      dropdownControl.classList.contains("c-menu__dropdown-content--show")
+        ? dropdownControl.classList.remove("c-menu__dropdown-content--show")
+        : dropdownControl.classList.add("c-menu__dropdown-content--show");
     });
   });
 };
 menuToggle();
+
+const filterToggle = () => {};
