@@ -18,6 +18,10 @@
       </section>
       <section class="c-menu">
         <div class="c-menu-controls">
+          <div class="c-menu-title">
+            <h1>Filters</h1>
+          </div>
+
           <div class="c-menu-control">
             <button class="c-menu__dropdown-control">
               Filter
@@ -38,13 +42,11 @@
             </button>
 
             <ul class="c-menu__dropdown-content">
+              <li class="c-menu__dropdown-item" data-control="filter--complete">
+                Completed items
+              </li>
               <li
                 class="c-menu__dropdown-item"
-                data-control="filter--complete"
-              >
-                Completed items
-            </li>
-              <li class="c-menu__dropdown-item"
                 data-control="filter--incomplete"
               >
                 Incomplete items
@@ -117,15 +119,13 @@
                       data-name="Path 1"
                       d="M39.4,37.062,27.883,25.547a15.722,15.722,0,1,0-2.335,2.336L37.062,39.4a.826.826,0,0,0,1.168,0L39.4,38.23A.826.826,0,0,0,39.4,37.062ZM15.691,28.078A12.387,12.387,0,1,1,28.078,15.691,12.4,12.4,0,0,1,15.691,28.078Z"
                       transform="translate(0 0)"
-                      fill="#e8e8e8"
                     />
                   </g>
                 </svg>
               </button>
             </form>
           </div>
-        </div>
-        <div class="c-menu-status">
+          <div class="c-menu-status">
             <p class="c-menu-status__text"></p>
             <button class="c-menu-status__reset"></button>
           </div>
@@ -133,6 +133,7 @@
       </section>
       <div class="c-list"></div>
     </div>
-    <!-- <script src="todos.js"></script> -->
+
+    <script src="todos.js"></script>
   </body>
 </html>
