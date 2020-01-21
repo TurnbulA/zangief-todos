@@ -140,7 +140,6 @@ form {
   margin: 0 auto 5rem auto;
   display: flex;
   width: 100%;
-  max-width: 120rem;
   flex-direction: row;
   align-items: center;
   border: 0.1rem solid #e8e8e8;
