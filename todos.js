@@ -5,8 +5,8 @@ window.addEventListener("DOMContentLoaded", () => {
     .then(response => response.json())
     .then(json => {
       renderJson(json);
-      svgChange();
-      deleteEvent();
+      // svgChange();
+      // deleteEvent();
     })
     .catch(error => console.error(error));
 });
@@ -39,137 +39,137 @@ const renderJson = json => {
   el.innerHTML = userTasks;
 };
 
-const svgChange = () => {
-  const listItems = Array.from(document.querySelectorAll(".c-list-item"));
-  const selectItem = element => {
-    element.classList.remove("c-list-item-off");
-    element.classList.add("c-list-item-on");
-    element.querySelector('[type="checkbox"]').checked = true;
-  };
-  const deselectItem = element => {
-    element.classList.remove("c-list-item-on");
-    element.classList.add("c-list-item-off");
-    element.querySelector('[type="checkbox"]').checked = false;
-  };
-  listItems.forEach(listItem => {
-    listItem.addEventListener("click", function(event) {
-      event.preventDefault();
-      this.classList.contains("c-list-item-off")
-        ? selectItem(this)
-        : deselectItem(this);
-    });
-  });
-};
+// const svgChange = () => {
+//   const listItems = Array.from(document.querySelectorAll(".c-list-item"));
+//   const selectItem = element => {
+//     element.classList.remove("c-list-item-off");
+//     element.classList.add("c-list-item-on");
+//     element.querySelector('[type="checkbox"]').checked = true;
+//   };
+//   const deselectItem = element => {
+//     element.classList.remove("c-list-item-on");
+//     element.classList.add("c-list-item-off");
+//     element.querySelector('[type="checkbox"]').checked = false;
+//   };
+//   listItems.forEach(listItem => {
+//     listItem.addEventListener("click", function(event) {
+//       event.preventDefault();
+//       this.classList.contains("c-list-item-off")
+//         ? selectItem(this)
+//         : deselectItem(this);
+//     });
+//   });
+// };
 
-const deleteEvent = () => {
-  const todoListItems = Array.from(
-    document.querySelectorAll(".c-list-item__delete")
-  );
-  todoListItems.forEach(todoListItem => {
-    todoListItem.addEventListener("click", () => {
-      todoListItem.parentNode.remove();
-    });
-  });
-};
+// const deleteEvent = () => {
+//   const todoListItems = Array.from(
+//     document.querySelectorAll(".c-list-item__delete")
+//   );
+//   todoListItems.forEach(todoListItem => {
+//     todoListItem.addEventListener("click", () => {
+//       todoListItem.parentNode.remove();
+//     });
+//   });
+// };
 
-const menuToggle = (buttonClassName, dropdownClassName) => {
-  const dropdown = document.querySelector(buttonClassName);
-  dropdown.addEventListener("click", () => {
-    const dropContent = document.querySelector(dropdownClassName);
-    if (dropContent.style.display === "none") {
-      dropContent.style.display = "block";
-    } else {
-      dropContent.style.display = "none";
-    }
-  });
-};
-menuToggle(".c-menu-control__filter", ".c-menu-control__dropdown-filter");
-menuToggle(".c-menu-control__sort", ".c-menu-control__dropdown-sort");
+// const menuToggle = (buttonClassName, dropdownClassName) => {
+//   const dropdown = document.querySelector(buttonClassName);
+//   dropdown.addEventListener("click", () => {
+//     const dropContent = document.querySelector(dropdownClassName);
+//     if (dropContent.style.display === "none") {
+//       dropContent.style.display = "block";
+//     } else {
+//       dropContent.style.display = "none";
+//     }
+//   });
+// };
+// menuToggle(".c-menu-control__filter", ".c-menu-control__dropdown-filter");
+// menuToggle(".c-menu-control__sort", ".c-menu-control__dropdown-sort");
 
-const applyFilter = element => {
-  document.querySelector(element).addEventListener("click", () => {
-    const classList = document.querySelector(element).classList;
-    if (classList.contains("c-menu-control__dropdown--complete")) {
-      filterActive(".c-menu-control__dropdown--complete");
-    } else if (classList.contains("c-menu-control__dropdown--incomplete")) {
-      filterActive(".c-menu-control__dropdown--incomplete");
-    } else if (classList.contains("c-menu-control__dropdown--alphabetical")) {
-      filterActive(".c-menu-control__dropdown--alphabetical");
-    } else if (classList.contains("c-menu-control__dropdown--reverseAlpha")) {
-      filterActive(".c-menu-control__dropdown--reverseAlpha");
-    } else {
-      error => console.error(error);
-    }
-  });
-};
-applyFilter(".c-menu-control__dropdown--complete");
-applyFilter(".c-menu-control__dropdown--incomplete");
-applyFilter(".c-menu-control__dropdown--alphabetical");
-applyFilter(".c-menu-control__dropdown--reverseAlpha");
+// const applyFilter = element => {
+//   document.querySelector(element).addEventListener("click", () => {
+//     const classList = document.querySelector(element).classList;
+//     if (classList.contains("c-menu-control__dropdown--complete")) {
+//       filterActive(".c-menu-control__dropdown--complete");
+//     } else if (classList.contains("c-menu-control__dropdown--incomplete")) {
+//       filterActive(".c-menu-control__dropdown--incomplete");
+//     } else if (classList.contains("c-menu-control__dropdown--alphabetical")) {
+//       filterActive(".c-menu-control__dropdown--alphabetical");
+//     } else if (classList.contains("c-menu-control__dropdown--reverseAlpha")) {
+//       filterActive(".c-menu-control__dropdown--reverseAlpha");
+//     } else {
+//       error => console.error(error);
+//     }
+//   });
+// };
+// applyFilter(".c-menu-control__dropdown--complete");
+// applyFilter(".c-menu-control__dropdown--incomplete");
+// applyFilter(".c-menu-control__dropdown--alphabetical");
+// applyFilter(".c-menu-control__dropdown--reverseAlpha");
 
-const filterActive = buttonClassName => {
-  const dropButton = document.querySelector(buttonClassName);
-  dropButton.addEventListener("click", () => {
-    const activeContent = document.querySelector(
-      ".c-menu-control--active-text"
-    );
-    const reset = document.querySelector(".c-menu-control--active-reset");
-    if (dropButton.classList.contains("c-menu-control__dropdown--complete")) {
-      document.querySelector(".c-menu-control--active").style.display = "block";
-      activeContent.classList.add("c-menu-control--active-left");
-      document.querySelector(".c-menu-control--active-left").innerHTML =
-        "Filter: Completed items";
-      reset.innerHTML = "Reset filter";
-      document.querySelector(
-        ".c-menu-control__dropdown--content"
-      ).style.display = "none";
-      filterComplete(".c-list-item");
-      resetButton(reset);
-    } else if (
-      dropButton.classList.contains("c-menu-control__dropdown--incomplete")
-    ) {
-      activeContent.classList.add("c-menu-control--active-left");
-      document.querySelector(".c-menu-control--active").style.display = "block";
-      document.querySelector(".c-menu-control--active-left").innerHTML =
-        "Filter: Incompleted items";
-      reset.innerHTML = "Reset filter";
-      document.querySelector(
-        ".c-menu-control__dropdown--content"
-      ).style.display = "none";
-      filterIncomplete(".c-list-item");
-      resetButton(reset);
-    } else if (
-      dropButton.classList.contains("c-menu-control__dropdown--alphabetical")
-    ) {
-      document.querySelector(".c-menu-control--active").style.display = "block";
-      activeContent.classList.add("c-menu-control--active-middle");
-      document.querySelector(".c-menu-control--active-middle").innerHTML =
-        "Sort: Alphabetical";
-      reset.innerHTML = "Reset sort";
-      document.querySelector(".c-menu-control__dropdown-sort").style.display =
-        "none";
-      sortAlphabetical(".c-menu-control__dropdown--alphabetical");
-    } else if (
-      dropButton.classList.contains("c-menu-control__dropdown--reverseAlpha")
-    ) {
-      document.querySelector(".c-menu-control--active").style.display = "block";
-      activeContent.classList.add("c-menu-control--active-middle");
-      document.querySelector(".c-menu-control--active-middle").innerHTML =
-        "Sort: Reverse alphabetical";
-      reset.innerHTML = "Reset sort";
-      document.querySelector(".c-menu-control__dropdown-sort").style.display =
-        "none";
-      sortAlphabetical(".c-menu-control__dropdown--reverseAlpha");
-    } else {
-      error => console.error(error);
-    }
-  });
-};
+// const filterActive = buttonClassName => {
+//   const dropButton = document.querySelector(buttonClassName);
+//   dropButton.addEventListener("click", () => {
+//     const activeContent = document.querySelector(
+//       ".c-menu-control--active-text"
+//     );
+//     const reset = document.querySelector(".c-menu-control--active-reset");
+//     if (dropButton.classList.contains("c-menu-control__dropdown--complete")) {
+//       document.querySelector(".c-menu-control--active").style.display = "block";
+//       activeContent.classList.add("c-menu-control--active-left");
+//       document.querySelector(".c-menu-control--active-left").innerHTML =
+//         "Filter: Completed items";
+//       reset.innerHTML = "Reset filter";
+//       document.querySelector(
+//         ".c-menu-control__dropdown--content"
+//       ).style.display = "none";
+//       filterComplete(".c-list-item");
+//       resetButton(reset);
+//     } else if (
+//       dropButton.classList.contains("c-menu-control__dropdown--incomplete")
+//     ) {
+//       activeContent.classList.add("c-menu-control--active-left");
+//       document.querySelector(".c-menu-control--active").style.display = "block";
+//       document.querySelector(".c-menu-control--active-left").innerHTML =
+//         "Filter: Incompleted items";
+//       reset.innerHTML = "Reset filter";
+//       document.querySelector(
+//         ".c-menu-control__dropdown--content"
+//       ).style.display = "none";
+//       filterIncomplete(".c-list-item");
+//       resetButton(reset);
+//     } else if (
+//       dropButton.classList.contains("c-menu-control__dropdown--alphabetical")
+//     ) {
+//       document.querySelector(".c-menu-control--active").style.display = "block";
+//       activeContent.classList.add("c-menu-control--active-middle");
+//       document.querySelector(".c-menu-control--active-middle").innerHTML =
+//         "Sort: Alphabetical";
+//       reset.innerHTML = "Reset sort";
+//       document.querySelector(".c-menu-control__dropdown-sort").style.display =
+//         "none";
+//       sortAlphabetical(".c-menu-control__dropdown--alphabetical");
+//     } else if (
+//       dropButton.classList.contains("c-menu-control__dropdown--reverseAlpha")
+//     ) {
+//       document.querySelector(".c-menu-control--active").style.display = "block";
+//       activeContent.classList.add("c-menu-control--active-middle");
+//       document.querySelector(".c-menu-control--active-middle").innerHTML =
+//         "Sort: Reverse alphabetical";
+//       reset.innerHTML = "Reset sort";
+//       document.querySelector(".c-menu-control__dropdown-sort").style.display =
+//         "none";
+//       sortAlphabetical(".c-menu-control__dropdown--reverseAlpha");
+//     } else {
+//       error => console.error(error);
+//     }
+//   });
+// };
 
-const filterOff = () => {
-  const resetButton = document.querySelector(".c-menu-control--active-reset");
-  resetButton.addEventListener("click", () => {
-    document.querySelector(".c-menu-control--active").style.display = "none";
-  });
-};
-filterOff();
+// const filterOff = () => {
+//   const resetButton = document.querySelector(".c-menu-control--active-reset");
+//   resetButton.addEventListener("click", () => {
+//     document.querySelector(".c-menu-control--active").style.display = "none";
+//   });
+// };
+// filterOff();

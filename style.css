@@ -221,22 +221,23 @@ p::first-letter {
 
 @media only screen and (max-width: 768px) {
   .c-menu {
+    padding: 3rem 2rem;
     margin: 0 2rem 0 2rem;
     box-shadow: none;
     border: 1px solid #e8e8e8;
     display: flex;
     justify-content: center;
-    cursor: pointer;
   }
   .c-menu-controls {
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    font-size: 1.5rem;
   }
   .c-menu-title {
     display: block;
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin-bottom: 3rem;
   }
   .c-menu-control {
@@ -252,6 +253,8 @@ p::first-letter {
     display: flex;
     justify-content: center;
     border: 1px solid #e8e8e8;
+    padding-right: 0;
+    margin-bottom: 0;
   }
   .c-menu-control__search-input::placeholder {
     color: #34495e;
