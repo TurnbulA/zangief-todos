@@ -60,14 +60,25 @@ h1 {
 }
 .c-menu__dropdown-content {
   display: none;
+}
+.c-menu__dropdown-content--show {
+  display: block;
   position: absolute;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
   background-color: #ffffff;
   z-index: 1;
   border-radius: 3rem;
-  padding: 3rem 2rem;
+  padding: 2rem;
+  text-decoration: none;
 }
-.c-menu__dropdown-content .c-menu__dropdown--item {
+[data-control="sort--alpha"],
+[data-control="filter--complete"] {
+  border-bottom: 1px solid #e8e8e8;
+  padding: 0 0 2rem 0;
+  margin: 0 0 2rem 0;
+}
+
+.c-menu__dropdown-item {
   font-size: 3rem;
   text-decoration: none;
   display: block;
@@ -75,7 +86,7 @@ h1 {
   font-family: "Rubik", sans-serif;
   cursor: pointer;
 }
-.c-menu__dropdown-content .c-menu__dropdown--item:hover {
+.c-menu__dropdown-item:hover {
   background-color: #ddd;
 }
 .c-menu-control__search {
