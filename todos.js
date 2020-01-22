@@ -5,7 +5,7 @@ window.addEventListener("DOMContentLoaded", () => {
     .then(response => response.json())
     .then(json => {
       renderJson(json);
-      svgChange();
+      filterCompletedItems();
       deleteEvent();
     })
     .catch(error => console.error(error));
@@ -39,7 +39,7 @@ const renderJson = json => {
   el.innerHTML = userTasks;
 };
 
-const svgChange = () => {
+const filterCompletedItems = () => {
   const listItems = Array.from(document.querySelectorAll(".c-list-item"));
   const selectItem = element => {
     element.classList.remove("c-list-item-off");
@@ -76,7 +76,6 @@ const menuToggle = () => {
   const menuControls = [
     ...document.querySelectorAll(".c-menu-control__has-dropdown")
   ];
-  console.log(menuControls);
   menuControls.forEach(menuControl => {
     menuControl.addEventListener("click", function(event) {
       const dropdownControl = this.querySelector(".c-menu__dropdown-content");
@@ -88,4 +87,35 @@ const menuToggle = () => {
 };
 menuToggle();
 
-const filterToggle = () => {};
+const filterApply = () => {
+  const filterControls = [
+    ...document.querySelectorAll(".c-menu__dropdown-item")
+  ];
+  filterControls.forEach(filterControl => {
+    filterControl.addEventListener("click", function(event) {
+      const filterItems = [...document.querySelectorAll("[data-control]")];
+      const filterItem = this.getAttribute("data-control");
+      switch (filterItem) {
+        case "filter--complete":
+          console.log("boo");
+          break;
+        case "filter--incomplete":
+          console.log("incomplete");
+          break;
+        case "sort--alpha":
+          sortAlpha();
+          break;
+        default:
+          console.log("Default");
+          break;
+      }
+    });
+  });
+};
+filterApply();
+const sortAlpha = () => {
+  const listItems = [...document.querySelectorAll(".c-list-item")];
+  console.log(listItems);
+  const listSort = listItems.map(listItem => listItem.textContent).sort();
+  console.log(listSort);
+};
