@@ -7,6 +7,8 @@ window.addEventListener("DOMContentLoaded", () => {
       renderJson(json);
       filterCompletedItems();
       deleteEvent();
+
+      filterApply();
     })
     .catch(error => console.error(error));
 });
@@ -97,13 +99,16 @@ const filterApply = () => {
       const filterItem = this.getAttribute("data-control");
       switch (filterItem) {
         case "filter--complete":
-          console.log("boo");
+          filterComplete()
           break;
         case "filter--incomplete":
           console.log("incomplete");
           break;
         case "sort--alpha":
           sortAlpha();
+          break;
+        case "sort--rev-alpha":
+          sortRevAlpha();
           break;
         default:
           console.log("Default");
@@ -112,10 +117,52 @@ const filterApply = () => {
     });
   });
 };
-filterApply();
+
 const sortAlpha = () => {
   const listItems = [...document.querySelectorAll(".c-list-item")];
-  console.log(listItems);
-  const listSort = listItems.map(listItem => listItem.textContent).sort();
-  console.log(listSort);
+  const listSorted = listItems.sort(function(a, b) {
+    if (a.textContent < b.textContent) {
+      return -1;
+    } else if (a.textContent > b.textContent) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+  listItems.forEach((listItem, index) => {
+    listItem.parentNode.appendChild(listSorted[index]);
+  });
 };
+
+
+​
+const sortItems = (items) =>
+  items.sort(function (a, b) {
+    if (a.textContent < b.textContent) {
+      return -1;
+    } else if (a.textContent > b.textContent) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+​
+const sortAlpha = () => {
+  const listItems = [...document.querySelectorAll(".c-list-item")];
+  const listSorted = sortItems(listItems);
+​
+  listItems.forEach((listItem, index) => {
+    listItem.parentNode.appendChild(listSorted[index]);
+  });
+};
+​
+const sortRevAlpha = () => {
+  const listItems = [...document.querySelectorAll(".c-list-item")];
+  const listSorted = sortItems(listItems).reverse();
+​
+  listItems.forEach((listItem, index) => {
+    listItem.parentNode.appendChild(listSorted[index]);
+  });
+};
+
+

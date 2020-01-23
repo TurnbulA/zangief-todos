@@ -128,7 +128,7 @@ form {
   width: 33rem;
   z-index: 1;
 }
-.c-menu-status-reset {
+.c-menu-status__reset {
   border: none;
   background: none;
   font-size: 2rem;
