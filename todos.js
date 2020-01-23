@@ -7,7 +7,6 @@ window.addEventListener("DOMContentLoaded", () => {
       renderJson(json);
       filterCompletedItems();
       deleteEvent();
-
       filterApply();
     })
     .catch(error => console.error(error));
@@ -99,10 +98,10 @@ const filterApply = () => {
       const filterItem = this.getAttribute("data-control");
       switch (filterItem) {
         case "filter--complete":
-          filterComplete()
+          filterComplete();
           break;
         case "filter--incomplete":
-          console.log("incomplete");
+          filterIncomplete();
           break;
         case "sort--alpha":
           sortAlpha();
@@ -117,10 +116,8 @@ const filterApply = () => {
     });
   });
 };
-
-const sortAlpha = () => {
-  const listItems = [...document.querySelectorAll(".c-list-item")];
-  const listSorted = listItems.sort(function(a, b) {
+const sortItems = items =>
+  items.sort(function(a, b) {
     if (a.textContent < b.textContent) {
       return -1;
     } else if (a.textContent > b.textContent) {
@@ -129,40 +126,43 @@ const sortAlpha = () => {
       return 0;
     }
   });
-  listItems.forEach((listItem, index) => {
-    listItem.parentNode.appendChild(listSorted[index]);
-  });
-};
-
-
-​
-const sortItems = (items) =>
-  items.sort(function (a, b) {
-    if (a.textContent < b.textContent) {
-      return -1;
-    } else if (a.textContent > b.textContent) {
-      return 1;
-    } else {
-      return 0;
-    }
-  });
-​
 const sortAlpha = () => {
   const listItems = [...document.querySelectorAll(".c-list-item")];
   const listSorted = sortItems(listItems);
-​
   listItems.forEach((listItem, index) => {
     listItem.parentNode.appendChild(listSorted[index]);
   });
 };
-​
 const sortRevAlpha = () => {
   const listItems = [...document.querySelectorAll(".c-list-item")];
   const listSorted = sortItems(listItems).reverse();
-​
   listItems.forEach((listItem, index) => {
     listItem.parentNode.appendChild(listSorted[index]);
   });
 };
 
+const filterComplete = () => {
+  const completeItems = [...document.querySelectorAll(".c-list-item-on")];
+  const incompleteItems = [...document.querySelectorAll(".c-list-item-off")];
+  completeItems.forEach(completeItem => {
+    if (completeItem.classList.contains("c-list-item-hide")) {
+      completeItem.classList.remove("c-list-item-hide");
+    }
+  });
+  incompleteItems.forEach(incompleteItem => {
+    incompleteItem.classList.add("c-list-item-hide");
+  });
+};
 
+const filterIncomplete = () => {
+  const completeItems = [...document.querySelectorAll(".c-list-item-on")];
+  const incompleteItems = [...document.querySelectorAll(".c-list-item-off")];
+  incompleteItems.forEach(incompleteItem => {
+    if (incompleteItem.classList.contains("c-list-item-hide")) {
+      incompleteItem.classList.remove("c-list-item-hide");
+    }
+  });
+  completeItems.forEach(completeItem => {
+    completeItem.classList.add("c-list-item-hide");
+  });
+};

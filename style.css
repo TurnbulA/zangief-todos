@@ -158,6 +158,9 @@ form {
   transition: all 200ms ease-in-out;
   cursor: pointer;
 }
+.c-list-item-hide {
+  display: none;
+}
 .c-list-item:hover {
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
 }
