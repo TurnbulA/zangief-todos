@@ -95,18 +95,23 @@ const filterApply = () => {
   filterControls.forEach(filterControl => {
     filterControl.addEventListener("click", function(event) {
       const filterItems = [...document.querySelectorAll("[data-control]")];
+      console.log(filterItems);
       const filterItem = this.getAttribute("data-control");
       switch (filterItem) {
         case "filter--complete":
+          filterText("filter--complete");
           filterComplete();
           break;
         case "filter--incomplete":
+          filterText("filter--incomplete");
           filterIncomplete();
           break;
         case "sort--alpha":
+          sortText("sort--alpha");
           sortAlpha();
           break;
         case "sort--rev-alpha":
+          sortText("sort--rev-alpha");
           sortRevAlpha();
           break;
         default:
@@ -116,6 +121,7 @@ const filterApply = () => {
     });
   });
 };
+
 const sortItems = items =>
   items.sort(function(a, b) {
     if (a.textContent < b.textContent) {
@@ -126,6 +132,7 @@ const sortItems = items =>
       return 0;
     }
   });
+
 const sortAlpha = () => {
   const listItems = [...document.querySelectorAll(".c-list-item")];
   const listSorted = sortItems(listItems);
@@ -133,6 +140,7 @@ const sortAlpha = () => {
     listItem.parentNode.appendChild(listSorted[index]);
   });
 };
+
 const sortRevAlpha = () => {
   const listItems = [...document.querySelectorAll(".c-list-item")];
   const listSorted = sortItems(listItems).reverse();
@@ -165,4 +173,49 @@ const filterIncomplete = () => {
   completeItems.forEach(completeItem => {
     completeItem.classList.add("c-list-item-hide");
   });
+};
+
+const FILTER_RESETS = {
+  "filter--complete": "Filter: Completed items",
+  "filter--incomplete": "Filter: Incompleted items",
+  "sort--alpha": "Sort: Alphabetical",
+  "sort--rev-alpha": "Sort: Reverse alphabetical"
+};
+const filterText = filterType => {
+  const buttonColor = document.querySelector(".c-menu__dropdown-filter");
+  const filterInner = document.querySelector(".c-menu-status__text-filter");
+  filterInner.textContent = FILTER_RESETS[filterType];
+  switch (filterType) {
+    case "filter--complete":
+      const completeChange = document.querySelector(".c-menu-status-filter");
+      completeChange.classList.remove("c-menu-status-hide");
+      completeChange.classList.add("c-menu-status-show");
+      buttonColor.classList.add("c-menu__dropdown-control--green");
+      break;
+    case "filter--incomplete":
+      const incompleteChange = document.querySelector(".c-menu-status-filter");
+      incompleteChange.classList.remove("c-menu-status-hide");
+      incompleteChange.classList.add("c-menu-status-show");
+      buttonColor.classList.add("c-menu__dropdown-control--green");
+      break;
+  }
+};
+const sortText = sortType => {
+  const sortColor = document.querySelector(".c-menu__dropdown-sort");
+  const sortInner = document.querySelector(".c-menu-status__text-sort");
+  sortInner.textContent = FILTER_RESETS[sortType];
+  switch (sortType) {
+    case "sort--alpha":
+      const alphaChange = document.querySelector(".c-menu-status-sort");
+      alphaChange.classList.remove("c-menu-status-hide");
+      alphaChange.classList.add("c-menu-status-show");
+      sortColor.classList.add("c-menu__dropdown-control--green");
+      break;
+    case "sort--rev-alpha":
+      const revAlphaChange = document.querySelector(".c-menu-status-sort");
+      revAlphaChange.classList.remove("c-menu-status-hide");
+      revAlphaChange.classList.add("c-menu-status-show");
+      sortColor.classList.add("c-menu__dropdown-control--green");
+      break;
+  }
 };
