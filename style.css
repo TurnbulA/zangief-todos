@@ -59,7 +59,7 @@ h1 {
   color: #34495e;
   fill: #34495e;
 }
-.c-menu__dropdown-control--green {
+.c-menu__dropdown-control--colored {
   border: 2px solid #36d7b7;
   color: #36d7b7;
   fill: #36d7b7;
@@ -67,7 +67,7 @@ h1 {
 .c-menu__dropdown-content {
   display: none;
 }
-.c-menu__dropdown-content--show {
+.c-menu__dropdown-content---show {
   display: block;
   position: absolute;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
@@ -138,10 +138,10 @@ form {
 .c-menu-status__text {
   margin-right: 6rem;
 }
-.c-menu-status-hide {
+.c-menu-status--hide {
   display: none;
 }
-.c-menu-status-show {
+.c-menu-status--show {
   display: block;
 }
 .c-menu-status__reset {
@@ -174,7 +174,7 @@ form {
   transition: all 200ms ease-in-out;
   cursor: pointer;
 }
-.c-list-item-hide {
+.c-list-item--hide {
   display: none;
 }
 .c-list-item:hover {

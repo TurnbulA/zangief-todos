@@ -80,9 +80,9 @@ const menuToggle = () => {
   menuControls.forEach(menuControl => {
     menuControl.addEventListener("click", function(event) {
       const dropdownControl = this.querySelector(".c-menu__dropdown-content");
-      dropdownControl.classList.contains("c-menu__dropdown-content--show")
-        ? dropdownControl.classList.remove("c-menu__dropdown-content--show")
-        : dropdownControl.classList.add("c-menu__dropdown-content--show");
+      dropdownControl.classList.contains("c-menu__dropdown-content---show")
+        ? dropdownControl.classList.remove("c-menu__dropdown-content---show")
+        : dropdownControl.classList.add("c-menu__dropdown-content---show");
     });
   });
 };
@@ -95,7 +95,6 @@ const filterApply = () => {
   filterControls.forEach(filterControl => {
     filterControl.addEventListener("click", function(event) {
       const filterItems = [...document.querySelectorAll("[data-control]")];
-      console.log(filterItems);
       const filterItem = this.getAttribute("data-control");
       switch (filterItem) {
         case "filter--complete":
@@ -153,12 +152,12 @@ const filterComplete = () => {
   const completeItems = [...document.querySelectorAll(".c-list-item-on")];
   const incompleteItems = [...document.querySelectorAll(".c-list-item-off")];
   completeItems.forEach(completeItem => {
-    if (completeItem.classList.contains("c-list-item-hide")) {
-      completeItem.classList.remove("c-list-item-hide");
+    if (completeItem.classList.contains("c-list-item--hide")) {
+      completeItem.classList.remove("c-list-item--hide");
     }
   });
   incompleteItems.forEach(incompleteItem => {
-    incompleteItem.classList.add("c-list-item-hide");
+    incompleteItem.classList.add("c-list-item--hide");
   });
 };
 
@@ -166,12 +165,12 @@ const filterIncomplete = () => {
   const completeItems = [...document.querySelectorAll(".c-list-item-on")];
   const incompleteItems = [...document.querySelectorAll(".c-list-item-off")];
   incompleteItems.forEach(incompleteItem => {
-    if (incompleteItem.classList.contains("c-list-item-hide")) {
-      incompleteItem.classList.remove("c-list-item-hide");
+    if (incompleteItem.classList.contains("c-list-item--hide")) {
+      incompleteItem.classList.remove("c-list-item--hide");
     }
   });
   completeItems.forEach(completeItem => {
-    completeItem.classList.add("c-list-item-hide");
+    completeItem.classList.add("c-list-item--hide");
   });
 };
 
@@ -188,15 +187,15 @@ const filterText = filterType => {
   switch (filterType) {
     case "filter--complete":
       const completeChange = document.querySelector(".c-menu-status-filter");
-      completeChange.classList.remove("c-menu-status-hide");
-      completeChange.classList.add("c-menu-status-show");
-      buttonColor.classList.add("c-menu__dropdown-control--green");
+      completeChange.classList.remove("c-menu-status--hide");
+      completeChange.classList.add("c-menu-status--show");
+      buttonColor.classList.add("c-menu__dropdown-control--colored");
       break;
     case "filter--incomplete":
       const incompleteChange = document.querySelector(".c-menu-status-filter");
-      incompleteChange.classList.remove("c-menu-status-hide");
-      incompleteChange.classList.add("c-menu-status-show");
-      buttonColor.classList.add("c-menu__dropdown-control--green");
+      incompleteChange.classList.remove("c-menu-status--hide");
+      incompleteChange.classList.add("c-menu-status--show");
+      buttonColor.classList.add("c-menu__dropdown-control--colored");
       break;
   }
 };
@@ -207,15 +206,36 @@ const sortText = sortType => {
   switch (sortType) {
     case "sort--alpha":
       const alphaChange = document.querySelector(".c-menu-status-sort");
-      alphaChange.classList.remove("c-menu-status-hide");
-      alphaChange.classList.add("c-menu-status-show");
-      sortColor.classList.add("c-menu__dropdown-control--green");
+      alphaChange.classList.remove("c-menu-status--hide");
+      alphaChange.classList.add("c-menu-status--show");
+      sortColor.classList.add("c-menu__dropdown-control--colored");
       break;
     case "sort--rev-alpha":
       const revAlphaChange = document.querySelector(".c-menu-status-sort");
-      revAlphaChange.classList.remove("c-menu-status-hide");
-      revAlphaChange.classList.add("c-menu-status-show");
-      sortColor.classList.add("c-menu__dropdown-control--green");
+      revAlphaChange.classList.remove("c-menu-status--hide");
+      revAlphaChange.classList.add("c-menu-status--show");
+      sortColor.classList.add("c-menu__dropdown-control--colored");
       break;
   }
 };
+
+const filterReset = () => {
+  document
+    .querySelector(".c-menu-status__reset")
+    .addEventListener("click", () => {
+      const resetItems = [...document.querySelectorAll(".c-list-item")];
+      const buttonColor = document.querySelector(
+        ".c-menu__dropdown-control--colored"
+      );
+      const filterShow = document.querySelector(".c-menu-status--show");
+      resetItems.forEach(resetItem => {
+        if (resetItem.classList.contains("c-list-item--hide")) {
+          resetItem.classList.remove("c-list-item--hide");
+          buttonColor.classList.remove("c-menu__dropdown-control--colored");
+          filterShow.classList.remove("c-menu-status--show");
+          filterShow.classList.add("c-menu-status--hide");
+        }
+      });
+    });
+};
+filterReset();
