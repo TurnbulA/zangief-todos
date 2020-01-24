@@ -258,7 +258,18 @@ const handleReset = () => {
 
   resetButtons.forEach(resetButton => {
     resetButton.addEventListener("click", function() {
-      console.log(listItems);
+      buttonReset(".c-menu-status-sort", ".c-menu__dropdown-sort");
+      let listItemDoms = new DOMParser()
+        .parseFromString(listItems, "text/html")
+        .querySelector("body");
+      const sortResetItems = [
+        ...listItemDoms.querySelectorAll(".c-list-item__text")
+      ];
+      sortResetItems.forEach((sortResetItem, index) => {
+        const sortChangeItem = document.querySelector(".c-list-item__text");
+        console.log(sortResetItem);
+        sortChangeItem.parentNode.appendChild(sortResetItem[index]);
+      });
     });
   });
 };
