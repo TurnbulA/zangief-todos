@@ -185,6 +185,7 @@ const FILTER_RESETS = {
   "sort--alpha": "Sort: Alphabetical",
   "sort--rev-alpha": "Sort: Reverse alphabetical"
 };
+
 const filterText = filterType => {
   const buttonColor = document.querySelector(".c-menu__dropdown-filter");
   const filterInner = document.querySelector(".c-menu-status__text-filter");
@@ -204,6 +205,7 @@ const filterText = filterType => {
       break;
   }
 };
+
 const sortText = sortType => {
   const sortColor = document.querySelector(".c-menu__dropdown-sort");
   const sortInner = document.querySelector(".c-menu-status__text-sort");
@@ -245,6 +247,7 @@ const filterReset = () => {
     });
 };
 filterReset();
+
 const buttonReset = (content, container) => {
   const itemContent = document.querySelector(content);
   const itemContainer = document.querySelector(container);
@@ -259,22 +262,16 @@ const handleReset = () => {
   resetButtons.forEach(resetButton => {
     resetButton.addEventListener("click", function() {
       buttonReset(".c-menu-status-sort", ".c-menu__dropdown-sort");
-      let listItemDoms = new DOMParser()
-        .parseFromString(listItems, "text/html")
-        .querySelector("body");
 
-      const sortChangeItems = [
-        ...document.querySelectorAll(".c-list-item__text p")
-      ];
+      const resetType = this.getAttribute('data-reset');
+      const originalListItems = [...new DOMParser().parseFromString(listItems, "text/html").querySelector("body").children]
+      const currentlyRenderedListItems = [...document.querySelectorAll('.c-list-item')]
 
-      sortChangeItems.forEach(sortChangeItem => {
-        const sortResetItems = [
-          ...listItemDoms.querySelectorAll(".c-list-item__text p")
-        ];
-        sortResetItems.forEach((sortResetItem, index) => {
-          sortChangeItem.innerHTML = sortResetItem[index];
-        });
-      });
+      if (resetType === 'sort') {
+        originalListItems.forEach((originalListItem, index) => {
+          currentlyRenderedListItems[index].querySelector('p').innerText = originalListItem.innerText.trim()
+        })
+      }
     });
   });
 };
