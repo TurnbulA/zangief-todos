@@ -262,13 +262,18 @@ const handleReset = () => {
       let listItemDoms = new DOMParser()
         .parseFromString(listItems, "text/html")
         .querySelector("body");
-      const sortResetItems = [
-        ...listItemDoms.querySelectorAll(".c-list-item__text")
+
+      const sortChangeItems = [
+        ...document.querySelectorAll(".c-list-item__text p")
       ];
-      sortResetItems.forEach((sortResetItem, index) => {
-        const sortChangeItem = document.querySelector(".c-list-item__text");
-        console.log(sortResetItem);
-        sortChangeItem.parentNode.appendChild(sortResetItem[index]);
+
+      sortChangeItems.forEach(sortChangeItem => {
+        const sortResetItems = [
+          ...listItemDoms.querySelectorAll(".c-list-item__text p")
+        ];
+        sortResetItems.forEach((sortResetItem, index) => {
+          sortChangeItem.innerHTML = sortResetItem[index];
+        });
       });
     });
   });
