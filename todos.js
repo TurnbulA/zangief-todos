@@ -1,10 +1,12 @@
 const el = document.querySelector(".c-list");
+let listItems;
 
 window.addEventListener("DOMContentLoaded", () => {
   fetch("https://jsonplaceholder.typicode.com/todos")
     .then(response => response.json())
     .then(json => {
       renderJson(json);
+      listItems = renderJson(json);
       filterCompletedItems();
       deleteEvent();
       filterApply();
@@ -37,7 +39,10 @@ const renderJson = json => {
         </div>`
     )
     .join("");
+
   el.innerHTML = userTasks;
+
+  return userTasks;
 };
 
 const filterCompletedItems = () => {
@@ -239,3 +244,24 @@ const filterReset = () => {
     });
 };
 filterReset();
+
+const handleReset = () => {
+  const resetButtons = [...document.querySelectorAll("[data-reset]")]
+
+  resetButtons.forEach(resetButton => {
+    resetButton.addEventListener('click', function() {
+      const resetType = this.getAttribute('data-reset');
+
+      if (resetType === 'sort') {
+        const listContainer = document.querySelector('.c-list');
+        const sortedListItems = [...document.querySelectorAll('.c-list-item')]
+        let listItemDomNodes = new DOMParser().parseFromString(listItems, 'text/html').querySelector('body').innerHTML
+
+        sortedListItems.forEach(sortedListItem => sortedListItem.remove());
+        listContainer.innerHTML = listItemDomNodes;
+      }
+    })
+  })
+}
+
+handleReset()
