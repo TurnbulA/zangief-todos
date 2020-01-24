@@ -240,28 +240,27 @@ const filterReset = () => {
           filterShow.classList.remove("c-menu-status--show");
           filterShow.classList.add("c-menu-status--hide");
         }
+        buttonReset(".c-menu-status-filter", ".c-menu__dropdown-filter");
       });
     });
 };
 filterReset();
+const buttonReset = (content, container) => {
+  const itemContent = document.querySelector(content);
+  const itemContainer = document.querySelector(container);
+  itemContent.classList.remove("c-menu-status--show");
+  itemContent.classList.add("c-menu-status--hide");
+  itemContainer.classList.remove("c-menu__dropdown-control--colored");
+};
 
 const handleReset = () => {
-  const resetButtons = [...document.querySelectorAll("[data-reset]")]
+  const resetButtons = [...document.querySelectorAll("[data-reset]")];
 
   resetButtons.forEach(resetButton => {
-    resetButton.addEventListener('click', function() {
-      const resetType = this.getAttribute('data-reset');
+    resetButton.addEventListener("click", function() {
+      console.log(listItems);
+    });
+  });
+};
 
-      if (resetType === 'sort') {
-        const listContainer = document.querySelector('.c-list');
-        const sortedListItems = [...document.querySelectorAll('.c-list-item')]
-        let listItemDomNodes = new DOMParser().parseFromString(listItems, 'text/html').querySelector('body').innerHTML
-
-        sortedListItems.forEach(sortedListItem => sortedListItem.remove());
-        listContainer.innerHTML = listItemDomNodes;
-      }
-    })
-  })
-}
-
-handleReset()
+handleReset();
