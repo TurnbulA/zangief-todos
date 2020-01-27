@@ -1,7 +1,5 @@
 const el = document.querySelector(".c-list");
 let listItems;
-let filterApplied = false;
-let sortApplied = false;
 
 window.addEventListener("DOMContentLoaded", () => {
   fetch("https://jsonplaceholder.typicode.com/todos")
@@ -244,9 +242,6 @@ const filterReset = () => {
       resetItems.forEach(resetItem => {
         if (resetItem.classList.contains("c-list-item--hide")) {
           resetItem.classList.remove("c-list-item--hide");
-          buttonColor.classList.remove("c-menu__dropdown-control--colored");
-          filterShow.classList.remove("c-menu-status--show");
-          filterShow.classList.add("c-menu-status--hide");
         }
         buttonReset(".c-menu-status-filter", ".c-menu__dropdown-filter");
       });
@@ -257,6 +252,8 @@ filterReset();
 const buttonReset = (content, container) => {
   const itemContent = document.querySelector(content);
   const itemContainer = document.querySelector(container);
+  console.log(itemContent);
+  console.log(itemContainer);
   itemContent.classList.remove("c-menu-status--show");
   itemContent.classList.add("c-menu-status--hide");
   itemContainer.classList.remove("c-menu__dropdown-control--colored");
@@ -267,7 +264,6 @@ const handleReset = () => {
 
   resetButtons.forEach(resetButton => {
     resetButton.addEventListener("click", function() {
-      buttonReset(".c-menu-status-sort", ".c-menu__dropdown-sort");
       const currentlyRenderedListItems = [
         ...document.querySelectorAll(".c-list-item")
       ];
@@ -292,6 +288,7 @@ const handleReset = () => {
         currentlyRenderedListItems.forEach((currentlyRenderedItem, index) => {
           currentlyRenderedItem.parentNode.appendChild(orderedList[index]);
         });
+        buttonReset(".c-menu-status-sort", ".c-menu__dropdown-sort");
       }
     });
   });
