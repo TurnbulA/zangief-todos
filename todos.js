@@ -1,5 +1,7 @@
 const el = document.querySelector(".c-list");
 let listItems;
+let filterApplied = false;
+let sortApplied = false;
 
 window.addEventListener("DOMContentLoaded", () => {
   fetch("https://jsonplaceholder.typicode.com/todos")
@@ -18,8 +20,8 @@ const renderJson = json => {
   el.innerHTML = json.title;
   const userTasks = json
     .map(
-      ({ title }) =>
-        `<div class="c-list-item c-list-item-off">
+      (item, index) =>
+        `<div class="c-list-item c-list-item-off" data-id=${index} >
             <label class="c-list-item__input">
               <input type="checkbox"/>
               <span class="c-list-item__input--custom">
@@ -28,7 +30,7 @@ const renderJson = json => {
                 </svg>
               </span>
               <div class="c-list-item__text">              
-                <p>${title}</p>
+                <p>${item.title}</p>
               </div>     
             </label>      
             <div class="c-list-item__delete">
@@ -105,18 +107,22 @@ const filterApply = () => {
         case "filter--complete":
           filterText("filter--complete");
           filterComplete();
+          filterApplied = true;
           break;
         case "filter--incomplete":
           filterText("filter--incomplete");
           filterIncomplete();
+          filterApplied = true;
           break;
         case "sort--alpha":
           sortText("sort--alpha");
           sortAlpha();
+          sortApplied = true;
           break;
         case "sort--rev-alpha":
           sortText("sort--rev-alpha");
           sortRevAlpha();
+          sortApplied = true;
           break;
         default:
           console.log("Default");
@@ -262,15 +268,30 @@ const handleReset = () => {
   resetButtons.forEach(resetButton => {
     resetButton.addEventListener("click", function() {
       buttonReset(".c-menu-status-sort", ".c-menu__dropdown-sort");
+      const currentlyRenderedListItems = [
+        ...document.querySelectorAll(".c-list-item")
+      ];
+      const resetType = this.getAttribute("data-reset");
 
-      const resetType = this.getAttribute('data-reset');
-      const originalListItems = [...new DOMParser().parseFromString(listItems, "text/html").querySelector("body").children]
-      const currentlyRenderedListItems = [...document.querySelectorAll('.c-list-item')]
-
-      if (resetType === 'sort') {
-        originalListItems.forEach((originalListItem, index) => {
-          currentlyRenderedListItems[index].querySelector('p').innerText = originalListItem.innerText.trim()
-        })
+      if (resetType === "sort") {
+        const orderedList = currentlyRenderedListItems.sort(function(a, b) {
+          if (
+            Number(a.getAttribute("data-id")) <
+            Number(b.getAttribute("data-id"))
+          ) {
+            return -1;
+          } else if (
+            Number(a.getAttribute("data-id")) >
+            Number(b.getAttribute("data-id"))
+          ) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+        currentlyRenderedListItems.forEach((currentlyRenderedItem, index) => {
+          currentlyRenderedItem.parentNode.appendChild(orderedList[index]);
+        });
       }
     });
   });
