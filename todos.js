@@ -252,8 +252,6 @@ filterReset();
 const buttonReset = (content, container) => {
   const itemContent = document.querySelector(content);
   const itemContainer = document.querySelector(container);
-  console.log(itemContent);
-  console.log(itemContainer);
   itemContent.classList.remove("c-menu-status--show");
   itemContent.classList.add("c-menu-status--hide");
   itemContainer.classList.remove("c-menu__dropdown-control--colored");
