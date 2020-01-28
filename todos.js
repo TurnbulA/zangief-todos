@@ -293,3 +293,27 @@ const handleReset = () => {
 };
 
 handleReset();
+
+const searchFilter = () => {
+  const searchInput = document.querySelector(".c-menu-control__search-input");
+  const searchButton = document.querySelector(".c-search__input-svg");
+  const searchText = document.querySelector(".c-menu-status-search p");
+  const searchTextContainer = document.querySelector(".c-menu-status-search");
+  searchInput.addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      searchText.textContent = searchInput.value;
+      searchTextContainer.classList.remove("c-menu-status--hide");
+      searchTextContainer.classList.add("c-menu-status--show");
+      document.querySelector("form").reset();
+    }
+  });
+  searchButton.addEventListener("click", function(e) {
+    e.preventDefault();
+    searchText.textContent = searchInput.value;
+    searchTextContainer.classList.remove("c-menu-status--hide");
+    searchTextContainer.classList.add("c-menu-status--show");
+    document.querySelector("form").reset();
+  });
+};
+searchFilter();
