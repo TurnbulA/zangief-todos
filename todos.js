@@ -1,10 +1,12 @@
 const el = document.querySelector(".c-list");
+let listItems;
 
 window.addEventListener("DOMContentLoaded", () => {
   fetch("https://jsonplaceholder.typicode.com/todos")
     .then(response => response.json())
     .then(json => {
       renderJson(json);
+      listItems = renderJson(json);
       filterCompletedItems();
       deleteEvent();
       filterApply();
@@ -16,8 +18,8 @@ const renderJson = json => {
   el.innerHTML = json.title;
   const userTasks = json
     .map(
-      ({ title }) =>
-        `<div class="c-list-item c-list-item-off">
+      (item, index) =>
+        `<div class="c-list-item c-list-item-off" data-id=${index} >
             <label class="c-list-item__input">
               <input type="checkbox"/>
               <span class="c-list-item__input--custom">
@@ -26,7 +28,7 @@ const renderJson = json => {
                 </svg>
               </span>
               <div class="c-list-item__text">              
-                <p>${title}</p>
+                <p>${item.title}</p>
               </div>     
             </label>      
             <div class="c-list-item__delete">
@@ -37,7 +39,10 @@ const renderJson = json => {
         </div>`
     )
     .join("");
+
   el.innerHTML = userTasks;
+
+  return userTasks;
 };
 
 const filterCompletedItems = () => {
@@ -80,9 +85,9 @@ const menuToggle = () => {
   menuControls.forEach(menuControl => {
     menuControl.addEventListener("click", function(event) {
       const dropdownControl = this.querySelector(".c-menu__dropdown-content");
-      dropdownControl.classList.contains("c-menu__dropdown-content--show")
-        ? dropdownControl.classList.remove("c-menu__dropdown-content--show")
-        : dropdownControl.classList.add("c-menu__dropdown-content--show");
+      dropdownControl.classList.contains("c-menu__dropdown-content---show")
+        ? dropdownControl.classList.remove("c-menu__dropdown-content---show")
+        : dropdownControl.classList.add("c-menu__dropdown-content---show");
     });
   });
 };
@@ -98,16 +103,24 @@ const filterApply = () => {
       const filterItem = this.getAttribute("data-control");
       switch (filterItem) {
         case "filter--complete":
+          filterText("filter--complete");
           filterComplete();
+          filterApplied = true;
           break;
         case "filter--incomplete":
+          filterText("filter--incomplete");
           filterIncomplete();
+          filterApplied = true;
           break;
         case "sort--alpha":
+          sortText("sort--alpha");
           sortAlpha();
+          sortApplied = true;
           break;
         case "sort--rev-alpha":
+          sortText("sort--rev-alpha");
           sortRevAlpha();
+          sortApplied = true;
           break;
         default:
           console.log("Default");
@@ -116,6 +129,7 @@ const filterApply = () => {
     });
   });
 };
+
 const sortItems = items =>
   items.sort(function(a, b) {
     if (a.textContent < b.textContent) {
@@ -126,6 +140,7 @@ const sortItems = items =>
       return 0;
     }
   });
+
 const sortAlpha = () => {
   const listItems = [...document.querySelectorAll(".c-list-item")];
   const listSorted = sortItems(listItems);
@@ -133,6 +148,7 @@ const sortAlpha = () => {
     listItem.parentNode.appendChild(listSorted[index]);
   });
 };
+
 const sortRevAlpha = () => {
   const listItems = [...document.querySelectorAll(".c-list-item")];
   const listSorted = sortItems(listItems).reverse();
@@ -145,12 +161,12 @@ const filterComplete = () => {
   const completeItems = [...document.querySelectorAll(".c-list-item-on")];
   const incompleteItems = [...document.querySelectorAll(".c-list-item-off")];
   completeItems.forEach(completeItem => {
-    if (completeItem.classList.contains("c-list-item-hide")) {
-      completeItem.classList.remove("c-list-item-hide");
+    if (completeItem.classList.contains("c-list-item--hide")) {
+      completeItem.classList.remove("c-list-item--hide");
     }
   });
   incompleteItems.forEach(incompleteItem => {
-    incompleteItem.classList.add("c-list-item-hide");
+    incompleteItem.classList.add("c-list-item--hide");
   });
 };
 
@@ -158,11 +174,122 @@ const filterIncomplete = () => {
   const completeItems = [...document.querySelectorAll(".c-list-item-on")];
   const incompleteItems = [...document.querySelectorAll(".c-list-item-off")];
   incompleteItems.forEach(incompleteItem => {
-    if (incompleteItem.classList.contains("c-list-item-hide")) {
-      incompleteItem.classList.remove("c-list-item-hide");
+    if (incompleteItem.classList.contains("c-list-item--hide")) {
+      incompleteItem.classList.remove("c-list-item--hide");
     }
   });
   completeItems.forEach(completeItem => {
-    completeItem.classList.add("c-list-item-hide");
+    completeItem.classList.add("c-list-item--hide");
   });
 };
+
+const FILTER_RESETS = {
+  "filter--complete": "Filter: Completed items",
+  "filter--incomplete": "Filter: Incompleted items",
+  "sort--alpha": "Sort: Alphabetical",
+  "sort--rev-alpha": "Sort: Reverse alphabetical"
+};
+
+const filterText = filterType => {
+  const buttonColor = document.querySelector(".c-menu__dropdown-filter");
+  const filterInner = document.querySelector(".c-menu-status__text-filter");
+  filterInner.textContent = FILTER_RESETS[filterType];
+  switch (filterType) {
+    case "filter--complete":
+      const completeChange = document.querySelector(".c-menu-status-filter");
+      completeChange.classList.remove("c-menu-status--hide");
+      completeChange.classList.add("c-menu-status--show");
+      buttonColor.classList.add("c-menu__dropdown-control--colored");
+      break;
+    case "filter--incomplete":
+      const incompleteChange = document.querySelector(".c-menu-status-filter");
+      incompleteChange.classList.remove("c-menu-status--hide");
+      incompleteChange.classList.add("c-menu-status--show");
+      buttonColor.classList.add("c-menu__dropdown-control--colored");
+      break;
+  }
+};
+
+const sortText = sortType => {
+  const sortColor = document.querySelector(".c-menu__dropdown-sort");
+  const sortInner = document.querySelector(".c-menu-status__text-sort");
+  sortInner.textContent = FILTER_RESETS[sortType];
+  switch (sortType) {
+    case "sort--alpha":
+      const alphaChange = document.querySelector(".c-menu-status-sort");
+      alphaChange.classList.remove("c-menu-status--hide");
+      alphaChange.classList.add("c-menu-status--show");
+      sortColor.classList.add("c-menu__dropdown-control--colored");
+      break;
+    case "sort--rev-alpha":
+      const revAlphaChange = document.querySelector(".c-menu-status-sort");
+      revAlphaChange.classList.remove("c-menu-status--hide");
+      revAlphaChange.classList.add("c-menu-status--show");
+      sortColor.classList.add("c-menu__dropdown-control--colored");
+      break;
+  }
+};
+
+const filterReset = () => {
+  document
+    .querySelector(".c-menu-status__reset")
+    .addEventListener("click", () => {
+      const resetItems = [...document.querySelectorAll(".c-list-item")];
+      const buttonColor = document.querySelector(
+        ".c-menu__dropdown-control--colored"
+      );
+      const filterShow = document.querySelector(".c-menu-status--show");
+      resetItems.forEach(resetItem => {
+        if (resetItem.classList.contains("c-list-item--hide")) {
+          resetItem.classList.remove("c-list-item--hide");
+        }
+        buttonReset(".c-menu-status-filter", ".c-menu__dropdown-filter");
+      });
+    });
+};
+filterReset();
+
+const buttonReset = (content, container) => {
+  const itemContent = document.querySelector(content);
+  const itemContainer = document.querySelector(container);
+  itemContent.classList.remove("c-menu-status--show");
+  itemContent.classList.add("c-menu-status--hide");
+  itemContainer.classList.remove("c-menu__dropdown-control--colored");
+};
+
+const handleReset = () => {
+  const resetButtons = [...document.querySelectorAll("[data-reset]")];
+
+  resetButtons.forEach(resetButton => {
+    resetButton.addEventListener("click", function() {
+      const currentlyRenderedListItems = [
+        ...document.querySelectorAll(".c-list-item")
+      ];
+      const resetType = this.getAttribute("data-reset");
+
+      if (resetType === "sort") {
+        const orderedList = currentlyRenderedListItems.sort(function(a, b) {
+          if (
+            Number(a.getAttribute("data-id")) <
+            Number(b.getAttribute("data-id"))
+          ) {
+            return -1;
+          } else if (
+            Number(a.getAttribute("data-id")) >
+            Number(b.getAttribute("data-id"))
+          ) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+        currentlyRenderedListItems.forEach((currentlyRenderedItem, index) => {
+          currentlyRenderedItem.parentNode.appendChild(orderedList[index]);
+        });
+        buttonReset(".c-menu-status-sort", ".c-menu__dropdown-sort");
+      }
+    });
+  });
+};
+
+handleReset();
