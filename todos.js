@@ -83,9 +83,9 @@ const menuToggle = () => {
   menuControls.forEach(menuControl => {
     menuControl.addEventListener("click", function(event) {
       const dropdownControl = this.querySelector(".c-menu__dropdown-content");
-      dropdownControl.classList.contains("c-menu__dropdown-content---show")
-        ? dropdownControl.classList.remove("c-menu__dropdown-content---show")
-        : dropdownControl.classList.add("c-menu__dropdown-content---show");
+      dropdownControl.classList.contains("c-menu__dropdown-content--show")
+        ? dropdownControl.classList.remove("c-menu__dropdown-content--show")
+        : dropdownControl.classList.add("c-menu__dropdown-content--show");
     });
   });
 };
@@ -300,12 +300,13 @@ const searchFilter = () => {
   const searchText = document.querySelector(".c-menu-status-search p");
   const searchTextContainer = document.querySelector(".c-menu-status-search");
 
-  searchInput.addEventListener("keypress", function(e) {
-    if (e.key === "Enter") {
+  searchInput.addEventListener("keydown", function(e) {
+    if (e.keyCode === 13) {
       e.preventDefault();
       searchText.textContent = searchInput.value;
       searchTextContainer.classList.remove("u-display--none");
       searchTextContainer.classList.add("u-display--show");
+      searchColorChange();
       searchInputReset();
       searchFunction();
     }
@@ -316,11 +317,19 @@ const searchFilter = () => {
     searchText.textContent = searchInput.value;
     searchTextContainer.classList.remove("u-display--none");
     searchTextContainer.classList.add("u-display--show");
+    searchColorChange();
     searchInputReset();
     searchFunction();
   });
 };
 searchFilter();
+
+const searchColorChange = () => {
+  const formTextColor = document.querySelector(".c-menu-control__search-input");
+  const borderColor = document.querySelector(".c-menu-control__search");
+  formTextColor.classList.add("c-menu-conrol-input--color");
+  borderColor.classList.add("c-form--color");
+};
 
 const searchInputReset = () => {
   const searchItems = [...document.querySelectorAll(".c-list-item")];
@@ -357,8 +366,13 @@ const searchButtonReset = () => {
     ".c-menu-status__reset-search"
   );
   const searchTextContainer = document.querySelector(".c-menu-status-search");
+  const formTextColor = document.querySelector(".c-menu-control__search-input");
+  const borderColor = document.querySelector(".c-menu-control__search");
   searchResetButton.addEventListener("click", () => {
     searchInputReset();
+
+    formTextColor.classList.remove("c-menu-conrol-input--color");
+    borderColor.classList.remove("c-form--color");
     searchTextContainer.classList.remove("u-display--show");
     searchTextContainer.classList.add("u-display--none");
   });
