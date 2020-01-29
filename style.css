@@ -293,6 +293,10 @@ p::first-letter {
   .c-menu-control--search__svg {
     fill: #34495e;
   }
+  .c-menu-status {
+    display: flex;
+    flex-direction: column;
+  }
   .c-list-header {
     margin: 0 0 9rem 0;
     font-size: 3rem;
