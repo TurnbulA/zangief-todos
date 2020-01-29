@@ -138,12 +138,6 @@ form {
 .c-menu-status__text {
   margin-right: 6rem;
 }
-.u-display--hide {
-  display: none;
-}
-.u-display--show {
-  display: block;
-}
 .c-menu-status__reset {
   border: none;
   background: none;
