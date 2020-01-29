@@ -338,18 +338,17 @@ const searchFunction = () => {
   const input = document.querySelector(".c-menu-control__search-input");
   const filter = input.value.toUpperCase();
   const ul = document.querySelector(".c-list");
-  const li = ul.getElementsByTagName("li");
+  const li = [...ul.getElementsByTagName("li")];
 
-  for (i = 0; i < li.length; i++) {
-    const a = li[i].getElementsByTagName("p")[0];
+  li.forEach((item, index) => {
+    const a = item.getElementsByTagName("p")[0];
     const textValue = a.textContent || a.innerText;
     if (textValue.toUpperCase().indexOf(filter) > -1) {
-      li[i].classList.add("active-search");
+      item.classList.add("active-search");
     } else {
-      li[i].classList.add("u-display--none-search");
+      item.classList.add("u-display--none-search");
     }
-  }
-
+  });
   document.querySelector("form").reset();
 };
 
