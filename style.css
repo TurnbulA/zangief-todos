@@ -138,10 +138,10 @@ form {
 .c-menu-status__text {
   margin-right: 6rem;
 }
-.c-menu-status--hide {
+.u-display--hide {
   display: none;
 }
-.c-menu-status--show {
+.u-display--show {
   display: block;
 }
 .c-menu-status__reset {
@@ -162,6 +162,7 @@ form {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  padding: 0;
 }
 .c-list-item {
   margin: 0 auto 5rem auto;
@@ -174,9 +175,16 @@ form {
   transition: all 200ms ease-in-out;
   cursor: pointer;
 }
-.c-list-item--hide {
+.u-display--none {
   display: none;
 }
+.u-display--block {
+  display: block;
+}
+.u-display--none-search {
+  display: none;
+}
+
 .c-list-item:hover {
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
 }
