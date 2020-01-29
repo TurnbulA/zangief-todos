@@ -5,7 +5,6 @@ window.addEventListener("DOMContentLoaded", () => {
   fetch("https://jsonplaceholder.typicode.com/todos")
     .then(response => response.json())
     .then(json => {
-      renderJson(json);
       mainItems = renderJson(json);
       filterCompletedItems();
       deleteEvent();
