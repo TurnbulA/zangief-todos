@@ -14,7 +14,6 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 const renderJson = json => {
-  el.innerHTML = json.title;
   const userTasks = json
     .map(
       (item, index) =>
