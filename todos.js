@@ -1,12 +1,11 @@
 const el = document.querySelector(".c-list");
-let listItems;
+let mainItems;
 
 window.addEventListener("DOMContentLoaded", () => {
   fetch("https://jsonplaceholder.typicode.com/todos")
     .then(response => response.json())
     .then(json => {
-      renderJson(json);
-      listItems = renderJson(json);
+      mainItems = renderJson(json);
       filterCompletedItems();
       deleteEvent();
       filterApply();
@@ -15,11 +14,10 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 const renderJson = json => {
-  el.innerHTML = json.title;
   const userTasks = json
     .map(
       (item, index) =>
-        `<div class="c-list-item c-list-item-off" data-id=${index} >
+        `<li class="c-list-item c-list-item-off" data-id=${index}>
             <label class="c-list-item__input">
               <input type="checkbox"/>
               <span class="c-list-item__input--custom">
@@ -34,9 +32,9 @@ const renderJson = json => {
             <div class="c-list-item__delete">
               <svg xmlns="http://www.w3.org/2000/svg" class="c-list-item__delete__svg" width="30" height="30" viewBox="0 0 30 30">
                 <path class="c-list-item__svg--cross" d="M17.183,15.156,29.513,2.88a1.487,1.487,0,0,0,0-2.118,1.519,1.519,0,0,0-2.137,0L15.057,13.027,2.624.579A1.514,1.514,0,0,0,.487,2.724L12.911,15.163.442,27.577a1.49,1.49,0,0,0,0,2.118,1.519,1.519,0,0,0,2.137,0l12.458-12.4,12.383,12.4a1.514,1.514,0,1,0,2.137-2.145Z" transform="translate(0 -0.135)"/>
-          </svg>
-            </div>  
-        </div>`
+              </svg>
+            </div> 
+        </li>`
     )
     .join("");
 
@@ -46,7 +44,7 @@ const renderJson = json => {
 };
 
 const filterCompletedItems = () => {
-  const listItems = Array.from(document.querySelectorAll(".c-list-item"));
+  const mainItems = Array.from(document.querySelectorAll(".c-list-item"));
   const selectItem = element => {
     element.classList.remove("c-list-item-off");
     element.classList.add("c-list-item-on");
@@ -57,7 +55,7 @@ const filterCompletedItems = () => {
     element.classList.add("c-list-item-off");
     element.querySelector('[type="checkbox"]').checked = false;
   };
-  listItems.forEach(listItem => {
+  mainItems.forEach(listItem => {
     listItem.addEventListener("click", function(event) {
       event.preventDefault();
       this.classList.contains("c-list-item-off")
@@ -68,10 +66,10 @@ const filterCompletedItems = () => {
 };
 
 const deleteEvent = () => {
-  const todoListItems = Array.from(
+  const todomainItems = Array.from(
     document.querySelectorAll(".c-list-item__delete")
   );
-  todoListItems.forEach(todoListItem => {
+  todomainItems.forEach(todoListItem => {
     todoListItem.addEventListener("click", () => {
       todoListItem.parentNode.remove();
     });
@@ -142,17 +140,17 @@ const sortItems = items =>
   });
 
 const sortAlpha = () => {
-  const listItems = [...document.querySelectorAll(".c-list-item")];
-  const listSorted = sortItems(listItems);
-  listItems.forEach((listItem, index) => {
+  const mainItems = [...document.querySelectorAll(".c-list-item")];
+  const listSorted = sortItems(mainItems);
+  mainItems.forEach((listItem, index) => {
     listItem.parentNode.appendChild(listSorted[index]);
   });
 };
 
 const sortRevAlpha = () => {
-  const listItems = [...document.querySelectorAll(".c-list-item")];
-  const listSorted = sortItems(listItems).reverse();
-  listItems.forEach((listItem, index) => {
+  const mainItems = [...document.querySelectorAll(".c-list-item")];
+  const listSorted = sortItems(mainItems).reverse();
+  mainItems.forEach((listItem, index) => {
     listItem.parentNode.appendChild(listSorted[index]);
   });
 };
@@ -161,12 +159,12 @@ const filterComplete = () => {
   const completeItems = [...document.querySelectorAll(".c-list-item-on")];
   const incompleteItems = [...document.querySelectorAll(".c-list-item-off")];
   completeItems.forEach(completeItem => {
-    if (completeItem.classList.contains("c-list-item--hide")) {
-      completeItem.classList.remove("c-list-item--hide");
+    if (completeItem.classList.contains("u-display--none")) {
+      completeItem.classList.remove("u-display--none");
     }
   });
   incompleteItems.forEach(incompleteItem => {
-    incompleteItem.classList.add("c-list-item--hide");
+    incompleteItem.classList.add("u-display--none");
   });
 };
 
@@ -174,12 +172,12 @@ const filterIncomplete = () => {
   const completeItems = [...document.querySelectorAll(".c-list-item-on")];
   const incompleteItems = [...document.querySelectorAll(".c-list-item-off")];
   incompleteItems.forEach(incompleteItem => {
-    if (incompleteItem.classList.contains("c-list-item--hide")) {
-      incompleteItem.classList.remove("c-list-item--hide");
+    if (incompleteItem.classList.contains("u-display--none")) {
+      incompleteItem.classList.remove("u-display--none");
     }
   });
   completeItems.forEach(completeItem => {
-    completeItem.classList.add("c-list-item--hide");
+    completeItem.classList.add("u-display--none");
   });
 };
 
@@ -197,14 +195,14 @@ const filterText = filterType => {
   switch (filterType) {
     case "filter--complete":
       const completeChange = document.querySelector(".c-menu-status-filter");
-      completeChange.classList.remove("c-menu-status--hide");
-      completeChange.classList.add("c-menu-status--show");
+      completeChange.classList.remove("u-display--none");
+      completeChange.classList.add("u-display--show");
       buttonColor.classList.add("c-menu__dropdown-control--colored");
       break;
     case "filter--incomplete":
       const incompleteChange = document.querySelector(".c-menu-status-filter");
-      incompleteChange.classList.remove("c-menu-status--hide");
-      incompleteChange.classList.add("c-menu-status--show");
+      incompleteChange.classList.remove("u-display--none");
+      incompleteChange.classList.add("u-display--show");
       buttonColor.classList.add("c-menu__dropdown-control--colored");
       break;
   }
@@ -214,17 +212,18 @@ const sortText = sortType => {
   const sortColor = document.querySelector(".c-menu__dropdown-sort");
   const sortInner = document.querySelector(".c-menu-status__text-sort");
   sortInner.textContent = FILTER_RESETS[sortType];
+
   switch (sortType) {
     case "sort--alpha":
       const alphaChange = document.querySelector(".c-menu-status-sort");
-      alphaChange.classList.remove("c-menu-status--hide");
-      alphaChange.classList.add("c-menu-status--show");
+      alphaChange.classList.remove("u-display--none");
+      alphaChange.classList.add("u-display--show");
       sortColor.classList.add("c-menu__dropdown-control--colored");
       break;
     case "sort--rev-alpha":
       const revAlphaChange = document.querySelector(".c-menu-status-sort");
-      revAlphaChange.classList.remove("c-menu-status--hide");
-      revAlphaChange.classList.add("c-menu-status--show");
+      revAlphaChange.classList.remove("u-display--none");
+      revAlphaChange.classList.add("u-display--show");
       sortColor.classList.add("c-menu__dropdown-control--colored");
       break;
   }
@@ -238,10 +237,11 @@ const filterReset = () => {
       const buttonColor = document.querySelector(
         ".c-menu__dropdown-control--colored"
       );
-      const filterShow = document.querySelector(".c-menu-status--show");
+      const filterShow = document.querySelector(".u-display--show");
+
       resetItems.forEach(resetItem => {
-        if (resetItem.classList.contains("c-list-item--hide")) {
-          resetItem.classList.remove("c-list-item--hide");
+        if (resetItem.classList.contains("u-display--none")) {
+          resetItem.classList.remove("u-display--none");
         }
         buttonReset(".c-menu-status-filter", ".c-menu__dropdown-filter");
       });
@@ -252,8 +252,8 @@ filterReset();
 const buttonReset = (content, container) => {
   const itemContent = document.querySelector(content);
   const itemContainer = document.querySelector(container);
-  itemContent.classList.remove("c-menu-status--show");
-  itemContent.classList.add("c-menu-status--hide");
+  itemContent.classList.remove("u-display--show");
+  itemContent.classList.add("u-display--none");
   itemContainer.classList.remove("c-menu__dropdown-control--colored");
 };
 
@@ -262,13 +262,13 @@ const handleReset = () => {
 
   resetButtons.forEach(resetButton => {
     resetButton.addEventListener("click", function() {
-      const currentlyRenderedListItems = [
+      const currentlyRenderedmainItems = [
         ...document.querySelectorAll(".c-list-item")
       ];
       const resetType = this.getAttribute("data-reset");
 
       if (resetType === "sort") {
-        const orderedList = currentlyRenderedListItems.sort(function(a, b) {
+        const orderedList = currentlyRenderedmainItems.sort(function(a, b) {
           if (
             Number(a.getAttribute("data-id")) <
             Number(b.getAttribute("data-id"))
@@ -283,7 +283,7 @@ const handleReset = () => {
             return 0;
           }
         });
-        currentlyRenderedListItems.forEach((currentlyRenderedItem, index) => {
+        currentlyRenderedmainItems.forEach((currentlyRenderedItem, index) => {
           currentlyRenderedItem.parentNode.appendChild(orderedList[index]);
         });
         buttonReset(".c-menu-status-sort", ".c-menu__dropdown-sort");
@@ -293,3 +293,74 @@ const handleReset = () => {
 };
 
 handleReset();
+
+const searchFilter = () => {
+  const searchInput = document.querySelector(".c-menu-control__search-input");
+  const searchButton = document.querySelector(".c-search__input-svg");
+  const searchText = document.querySelector(".c-menu-status-search p");
+  const searchTextContainer = document.querySelector(".c-menu-status-search");
+
+  searchInput.addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      searchText.textContent = searchInput.value;
+      searchTextContainer.classList.remove("u-display--none");
+      searchTextContainer.classList.add("u-display--show");
+      searchInputReset();
+      searchFunction();
+    }
+  });
+
+  searchButton.addEventListener("click", function(e) {
+    e.preventDefault();
+    searchText.textContent = searchInput.value;
+    searchTextContainer.classList.remove("u-display--none");
+    searchTextContainer.classList.add("u-display--show");
+    searchInputReset();
+    searchFunction();
+  });
+};
+searchFilter();
+
+const searchInputReset = () => {
+  const searchItems = [...document.querySelectorAll(".c-list-item")];
+
+  searchItems.forEach(searchItem => {
+    if (searchItem.classList.contains("u-display--none-search")) {
+      searchItem.classList.remove("u-display--none-search");
+    } else if (searchItem.classList.contains("active-search")) {
+      searchItem.classList.remove("active-search");
+    }
+  });
+};
+
+const searchFunction = () => {
+  const input = document.querySelector(".c-menu-control__search-input");
+  const filter = input.value.toUpperCase();
+  const ul = document.querySelector(".c-list");
+  const li = [...ul.getElementsByTagName("li")];
+
+  li.forEach((item, index) => {
+    const a = item.getElementsByTagName("p")[0];
+    const textValue = a.textContent || a.innerText;
+    if (textValue.toUpperCase().indexOf(filter) > -1) {
+      item.classList.add("active-search");
+    } else {
+      item.classList.add("u-display--none-search");
+    }
+  });
+  document.querySelector("form").reset();
+};
+
+const searchButtonReset = () => {
+  const searchResetButton = document.querySelector(
+    ".c-menu-status__reset-search"
+  );
+  const searchTextContainer = document.querySelector(".c-menu-status-search");
+  searchResetButton.addEventListener("click", () => {
+    searchInputReset();
+    searchTextContainer.classList.remove("u-display--show");
+    searchTextContainer.classList.add("u-display--none");
+  });
+};
+searchButtonReset();
