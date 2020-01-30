@@ -197,13 +197,13 @@ const filterText = filterType => {
       const completeChange = document.querySelector(".c-menu-status-filter");
       completeChange.classList.remove("u-display--none");
       completeChange.classList.add("u-display--show");
-      buttonColor.classList.add("c-menu__dropdown-control--colored");
+      buttonColor.classList.add("u-active-color");
       break;
     case "filter--incomplete":
       const incompleteChange = document.querySelector(".c-menu-status-filter");
       incompleteChange.classList.remove("u-display--none");
       incompleteChange.classList.add("u-display--show");
-      buttonColor.classList.add("c-menu__dropdown-control--colored");
+      buttonColor.classList.add("u-active-color");
       break;
   }
 };
@@ -218,13 +218,13 @@ const sortText = sortType => {
       const alphaChange = document.querySelector(".c-menu-status-sort");
       alphaChange.classList.remove("u-display--none");
       alphaChange.classList.add("u-display--show");
-      sortColor.classList.add("c-menu__dropdown-control--colored");
+      sortColor.classList.add("u-active-color");
       break;
     case "sort--rev-alpha":
       const revAlphaChange = document.querySelector(".c-menu-status-sort");
       revAlphaChange.classList.remove("u-display--none");
       revAlphaChange.classList.add("u-display--show");
-      sortColor.classList.add("c-menu__dropdown-control--colored");
+      sortColor.classList.add("u-active-color");
       break;
   }
 };
@@ -234,9 +234,7 @@ const filterReset = () => {
     .querySelector(".c-menu-status__reset")
     .addEventListener("click", () => {
       const resetItems = [...document.querySelectorAll(".c-list-item")];
-      const buttonColor = document.querySelector(
-        ".c-menu__dropdown-control--colored"
-      );
+      const buttonColor = document.querySelector(".u-active-color");
       const filterShow = document.querySelector(".u-display--show");
 
       resetItems.forEach(resetItem => {
@@ -254,7 +252,7 @@ const buttonReset = (content, container) => {
   const itemContainer = document.querySelector(container);
   itemContent.classList.remove("u-display--show");
   itemContent.classList.add("u-display--none");
-  itemContainer.classList.remove("c-menu__dropdown-control--colored");
+  itemContainer.classList.remove("u-active-color");
 };
 
 const handleReset = () => {
@@ -327,8 +325,8 @@ searchFilter();
 const searchColorChange = () => {
   const formTextColor = document.querySelector(".c-menu-control__search-input");
   const borderColor = document.querySelector(".c-menu-control__search");
-  formTextColor.classList.add("c-menu-conrol-input--color");
-  borderColor.classList.add("c-form--color");
+  formTextColor.classList.add("c-menu-conrol-input--active");
+  borderColor.classList.add("c-form--active");
 };
 
 const searchInputReset = () => {
@@ -371,8 +369,8 @@ const searchButtonReset = () => {
   searchResetButton.addEventListener("click", () => {
     searchInputReset();
 
-    formTextColor.classList.remove("c-menu-conrol-input--color");
-    borderColor.classList.remove("c-form--color");
+    formTextColor.classList.remove("c-menu-conrol-input--active");
+    borderColor.classList.remove("c-form--active");
     searchTextContainer.classList.remove("u-display--show");
     searchTextContainer.classList.add("u-display--none");
   });

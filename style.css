@@ -57,7 +57,7 @@ h1 {
   color: #34495e;
   fill: #34495e;
 }
-.c-menu__dropdown-control--colored {
+.u-active-color {
   border: 0.1rem solid #36d7b7;
   color: #36d7b7;
   fill: #36d7b7;
@@ -108,7 +108,7 @@ h1 {
   max-height: 8.2rem;
   fill: #e8e8e8;
 }
-.c-form--color {
+.c-form--active {
   border: 0.1rem solid #36d7b7;
   fill: #36d7b7;
 }
@@ -134,7 +134,7 @@ form {
 .c-menu-control__search-input::placeholder {
   color: #e8e8e8;
 }
-.c-menu-conrol-input--color::placeholder {
+.c-menu-conrol-input--active::placeholder {
   color: #36d7b7;
 }
 .c-menu-status {
