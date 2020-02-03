@@ -351,13 +351,13 @@ const searchFunction = () => {
   li.forEach((item, index) => {
     const a = item.getElementsByTagName("p")[0];
     const textValue = a.textContent || a.innerText;
-    if (textValue.toUpperCase().indexOf(filter) > -1) {
+    const searchTerm = textValue.toUpperCase().indexOf(filter);
+    if (searchTerm > -1) {
       item.classList.add("active-search");
     } else {
       item.classList.add("u-display--none-search");
     }
-    if (textValue.toUpperCase().indexOf(filter) === -1) {
-      console.log("Sup");
+    if (searchTerm === -1) {
       searchText.innerHTML = `No results for search term "${input.value}". Please try another search term.`;
     }
   });
