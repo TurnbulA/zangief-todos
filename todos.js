@@ -342,6 +342,7 @@ const searchInputReset = () => {
 };
 
 const searchFunction = () => {
+  const searchText = document.querySelector(".c-menu-status-search p");
   const input = document.querySelector(".c-menu-control__search-input");
   const filter = input.value.toUpperCase();
   const ul = document.querySelector(".c-list");
@@ -354,6 +355,10 @@ const searchFunction = () => {
       item.classList.add("active-search");
     } else {
       item.classList.add("u-display--none-search");
+    }
+    if (textValue.toUpperCase().indexOf(filter) === -1) {
+      console.log("Sup");
+      searchText.innerHTML = `No results for search term "${input.value}". Please try another search term.`;
     }
   });
   document.querySelector("form").reset();
