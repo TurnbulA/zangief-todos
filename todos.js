@@ -292,7 +292,7 @@ const handleReset = () => {
 
 handleReset();
 
-const searchFilter = () => {
+const foundResults = () => {
   const searchInput = document.querySelector(".c-menu-control__search-input");
   const searchButton = document.querySelector(".c-search__input-svg");
   const searchText = document.querySelector(".c-menu-status-search p");
@@ -301,7 +301,6 @@ const searchFilter = () => {
   searchInput.addEventListener("keydown", function(e) {
     if (e.keyCode === 13) {
       e.preventDefault();
-      searchText.textContent = searchInput.value;
       searchTextContainer.classList.remove("u-display--none");
       searchTextContainer.classList.add("u-display--show");
       searchColorChange();
@@ -320,7 +319,7 @@ const searchFilter = () => {
     searchFunction();
   });
 };
-searchFilter();
+foundResults();
 
 const searchColorChange = () => {
   const formTextColor = document.querySelector(".c-menu-control__search-input");
@@ -347,20 +346,23 @@ const searchFunction = () => {
   const filter = input.value.toUpperCase();
   const ul = document.querySelector(".c-list");
   const li = [...ul.getElementsByTagName("li")];
-
+  let foundResults = false;
   li.forEach((item, index) => {
     const a = item.getElementsByTagName("p")[0];
-    const textValue = a.textContent || a.innerText;
-    const searchTerm = textValue.toUpperCase().indexOf(filter);
-    if (searchTerm > -1) {
+    const textValue = a.textContent;
+
+    if (textValue.toUpperCase().indexOf(filter) > -1) {
       item.classList.add("active-search");
+      foundResults = true;
     } else {
       item.classList.add("u-display--none-search");
     }
-    if (searchTerm === -1) {
-      searchText.innerHTML = `No results for search term "${input.value}". Please try another search term.`;
-    }
   });
+  if (foundResults === true) {
+    searchText.textContent = input.value;
+  } else {
+    searchText.innerHTML = `No results for search term "${input.value}". Please try another search term.`;
+  }
   document.querySelector("form").reset();
 };
 
