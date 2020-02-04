@@ -210,13 +210,13 @@ const filterText = filterType => {
       const completeChange = document.querySelector(".c-menu-status-filter");
       completeChange.classList.remove("u-display--none");
       completeChange.classList.add("u-display--show");
-      buttonColor.classList.add("u-active-color");
+      buttonColor.classList.add("u-color--active");
       break;
     case "filter--incomplete":
       const incompleteChange = document.querySelector(".c-menu-status-filter");
       incompleteChange.classList.remove("u-display--none");
       incompleteChange.classList.add("u-display--show");
-      buttonColor.classList.add("u-active-color");
+      buttonColor.classList.add("u-color--active");
       break;
   }
 };
@@ -231,13 +231,13 @@ const sortText = sortType => {
       const alphaChange = document.querySelector(".c-menu-status-sort");
       alphaChange.classList.remove("u-display--none");
       alphaChange.classList.add("u-display--show");
-      sortColor.classList.add("u-active-color");
+      sortColor.classList.add("u-color--active");
       break;
     case "sort--rev-alpha":
       const revAlphaChange = document.querySelector(".c-menu-status-sort");
       revAlphaChange.classList.remove("u-display--none");
       revAlphaChange.classList.add("u-display--show");
-      sortColor.classList.add("u-active-color");
+      sortColor.classList.add("u-color--active");
       break;
   }
 };
@@ -247,7 +247,7 @@ const filterReset = () => {
     .querySelector(".c-menu-status__reset")
     .addEventListener("click", () => {
       const resetItems = [...document.querySelectorAll(".c-list-item")];
-      const buttonColor = document.querySelector(".u-active-color");
+      const buttonColor = document.querySelector(".u-color--active");
       const filterShow = document.querySelector(".u-display--show");
 
       resetItems.forEach(resetItem => {
@@ -265,7 +265,7 @@ const buttonReset = (content, container) => {
   const itemContainer = document.querySelector(container);
   itemContent.classList.remove("u-display--show");
   itemContent.classList.add("u-display--none");
-  itemContainer.classList.remove("u-active-color");
+  itemContainer.classList.remove("u-color--active");
 };
 
 const handleReset = () => {

@@ -67,7 +67,7 @@ h1 {
   fill: #34495e;
 }
 
-.u-active-color {
+.u-color--active {
   border: 0.1rem solid #36d7b7;
   color: #36d7b7;
   fill: #36d7b7;
