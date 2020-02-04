@@ -82,14 +82,30 @@ const menuToggle = () => {
   ];
   menuControls.forEach(menuControl => {
     menuControl.addEventListener("click", function(event) {
+      event.stopPropagation();
       const dropdownControl = this.querySelector(".c-menu__dropdown-content");
-      dropdownControl.classList.contains("c-menu__dropdown-content--show")
-        ? dropdownControl.classList.remove("c-menu__dropdown-content--show")
-        : dropdownControl.classList.add("c-menu__dropdown-content--show");
+      if (
+        dropdownControl.classList.contains("c-menu__dropdown-content--show")
+      ) {
+        dropdownControl.classList.remove("c-menu__dropdown-content--show");
+      } else {
+        dropdownControl.classList.add("c-menu__dropdown-content--show");
+      }
     });
   });
 };
 menuToggle();
+
+const dropdownItems = [
+  ...document.querySelectorAll(".c-menu__dropdown-content")
+];
+dropdownItems.forEach(dropdownItem => {
+  document.querySelector("body").addEventListener("click", function(event) {
+    if (dropdownItem.classList.contains("c-menu__dropdown-content--show")) {
+      dropdownItem.classList.remove("c-menu__dropdown-content--show");
+    }
+  });
+});
 
 const filterApply = () => {
   const filterControls = [
