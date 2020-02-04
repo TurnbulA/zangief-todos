@@ -335,10 +335,10 @@ const foundResults = () => {
 foundResults();
 
 const searchColorChange = () => {
-  const formTextColor = document.querySelector(".c-menu-control__search-input");
-  const borderColor = document.querySelector(".c-menu-control__search");
-  formTextColor.classList.add("c-menu-conrol-input--active");
-  borderColor.classList.add("c-form--active");
+  const searchInput = document.querySelector(".c-menu-control__search-input");
+  const searchControl = document.querySelector(".c-menu-control__search");
+  searchInput.classList.add("c-menu-conrol-input--active");
+  searchControl.classList.add("c-form--active");
 };
 
 const searchInputReset = () => {
@@ -371,7 +371,7 @@ const searchFunction = () => {
       item.classList.add("u-display--none-search");
     }
   });
-  if (foundResults === true) {
+  if (foundResults) {
     searchText.textContent = input.value;
   } else {
     searchText.innerHTML = `No results for search term "${input.value}". Please try another search term.`;
@@ -384,13 +384,13 @@ const searchButtonReset = () => {
     ".c-menu-status__reset-search"
   );
   const searchTextContainer = document.querySelector(".c-menu-status-search");
-  const formTextColor = document.querySelector(".c-menu-control__search-input");
-  const borderColor = document.querySelector(".c-menu-control__search");
+  const searchInput = document.querySelector(".c-menu-control__search-input");
+  const searchControl = document.querySelector(".c-menu-control__search");
   searchResetButton.addEventListener("click", () => {
     searchInputReset();
 
-    formTextColor.classList.remove("c-menu-conrol-input--active");
-    borderColor.classList.remove("c-form--active");
+    searchInput.classList.remove("c-menu-conrol-input--active");
+    searchControl.classList.remove("c-form--active");
     searchTextContainer.classList.remove("u-display--show");
     searchTextContainer.classList.add("u-display--none");
   });
